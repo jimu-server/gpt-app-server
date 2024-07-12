@@ -5,3 +5,4 @@
 2024-07-11 14:50:21	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
 2024-07-11 14:50:37	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
 2024-07-11 15:29:16	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-07-11 16:15:38	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}

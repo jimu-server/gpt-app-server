@@ -777,3 +777,475 @@ SQL Template ==> select *
 Parameter: [1] Time: 540.2µs
 2024-07-11 15:26:47	debug	logger/gin.go:52	| 200 |      1.8856ms |             ::1 | GET      "/api/chat/knowledge/list" 
 2024-07-11 15:29:16	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:356	load mapper file path:[mapper/file/gpt.xml]
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:356	load mapper file path:[mapper/file/template.xml]
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:162	Start scanning the mapper mapping function
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:178	Starts loading the 'GptMapper' mapping resolution
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.SelectMessageItem (interface {}) (*model.AppChatMessage, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.DeleteConversationMessage (interface {}, *sql.Tx) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.SelectModel (interface {}) (*model.LLmModel, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.ModelInfo (interface {}) (*model.LLmModel, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.InitCheck () (int64, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.ModelExists (interface {}) (bool, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.DeleteModel (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.UpdateConversationLastMsg (interface {}, *sql.Tx) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.CreateConversation (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.ModelList (interface {}) ([]model.LLmModel, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.DeleteMessage (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.GetUserAvatar (interface {}) (string, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.UpdateModelDownloadStatus (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.GetModelAvatar (interface {}) (string, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.DelConversation (interface {}, *sql.Tx) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.ConversationHistory (interface {}) ([]model.AppChatMessage, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.CreateMessage (interface {}, *sql.Tx) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeFileList (interface {}) ([]*model.AppChatKnowledgeFile, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeFileListById (interface {}) ([]*model.AppChatKnowledgeFile, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.BaseModelList (interface {}) ([]model.LLmModel, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.ConversationList (interface {}) ([]model.AppChatConversationItem, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.CreateKnowledge (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.DeleteKnowledge (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.CreateModel (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.InsertKnowledgeFile (interface {}) error
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeList (interface {}) ([]*model.AppChatKnowledgeInstance, error)
+2024-07-11 15:29:38	debug	gobatis/gobatis.go:198	GptMapper.GetGptPlugin () ([]*model.AppChatPlugin, error)
+2024-07-11 15:29:38	debug	gobatis/mapping.go:185	
+SQL Statements ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+SQL Template ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+Parameter: [] Count: (1), Time: 521.9µs
+2024-07-11 15:29:38	debug	gobatis/mapping.go:189	
+SQL Statements ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+SQL Template ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+Parameter: [] Time: 521.9µs
+2024-07-11 15:29:38	info	logger/zap_log.go:94	executeSQLScript success%!(EXTRA zapcore.Field={output 15 0  <nil>})
+2024-07-11 15:29:38	info	logger/zap_log.go:94	init gpt.db success
+2024-07-11 15:29:51	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 504.3µs
+2024-07-11 15:29:51	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 504.3µs
+2024-07-11 15:29:51	debug	logger/gin.go:52	| 200 |       504.3µs |             ::1 | GET      "/api/chat/plugin" 
+2024-07-11 15:29:51	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (0), Time: 552.7µs
+2024-07-11 15:29:51	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 552.7µs
+2024-07-11 15:29:51	debug	logger/gin.go:52	| 200 |       552.7µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:29:51	debug	logger/gin.go:52	| 200 |      1.5865ms |             ::1 | GET      "/api/chat/model/list" 
+2024-07-11 15:29:51	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (0), Time: 516.2µs
+2024-07-11 15:29:51	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 516.2µs
+2024-07-11 15:29:51	debug	logger/gin.go:52	| 200 |       516.2µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:29:55	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES ('MTgxMTMwMTg4MjcyMzgzMTgwOA==', '1', 'aa');
+SQL Template ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES (?, ?, ?);
+Parameter: [MTgxMTMwMTg4MjcyMzgzMTgwOA== 1 aa], Count: (1), Time: 2.0425ms
+2024-07-11 15:29:55	debug	logger/gin.go:52	| 200 |      6.2253ms |             ::1 | POST     "/api/chat/conversation/create" 
+2024-07-11 15:29:55	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (1), Time: 0s
+2024-07-11 15:29:55	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 0s
+2024-07-11 15:29:55	debug	logger/gin.go:52	| 200 |      1.4895ms |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:29:55	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMTg4MjcyMzgzMTgwOA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxMTMwMTg4MjcyMzgzMTgwOA==] Count: (0), Time: 0s
+2024-07-11 15:29:55	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMTg4MjcyMzgzMTgwOA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxMTMwMTg4MjcyMzgzMTgwOA==] Time: 505.5µs
+2024-07-11 15:29:55	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 505.5µs
+2024-07-11 15:29:55	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 505.5µs
+2024-07-11 15:29:55	debug	logger/gin.go:52	| 200 |       1.777ms |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxMTMwMTg4MjcyMzgzMTgwOA%3D%3D" 
+2024-07-11 15:29:55	debug	logger/gin.go:52	| 200 |       505.5µs |             ::1 | GET      "/api/chat/plugin" 
+2024-07-11 15:29:57	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_knowledge_instance
+        where user_id = '1'
+SQL Template ==> select *
+        from app_chat_knowledge_instance
+        where user_id = ?
+Parameter: [1] Count: (0), Time: 0s
+2024-07-11 15:29:57	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_knowledge_instance
+        where user_id = '1'
+SQL Template ==> select *
+        from app_chat_knowledge_instance
+        where user_id = ?
+Parameter: [1] Time: 0s
+2024-07-11 15:29:57	debug	logger/gin.go:52	| 200 |      1.4362ms |             ::1 | GET      "/api/chat/knowledge/list" 
+2024-07-11 15:30:03	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update
+            app_chat_conversation
+        set is_delete=1
+        where user_id = '1'
+          and id = 'MTgxMTMwMTg4MjcyMzgzMTgwOA==';
+SQL Template ==> update
+            app_chat_conversation
+        set is_delete=1
+        where user_id = ?
+          and id = ?;
+Parameter: [1 MTgxMTMwMTg4MjcyMzgzMTgwOA==], Count: (1), Time: 504.5µs
+2024-07-11 15:30:03	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update
+            app_chat_message
+        set is_delete=1
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMTg4MjcyMzgzMTgwOA==';
+SQL Template ==> update
+            app_chat_message
+        set is_delete=1
+        where user_id = ?
+          and conversation_id = ?;
+Parameter: [1 MTgxMTMwMTg4MjcyMzgzMTgwOA==], Count: (0), Time: 515.9µs
+2024-07-11 15:30:03	debug	logger/gin.go:52	| 200 |       6.344ms |             ::1 | POST     "/api/chat/conversation/del" 
+2024-07-11 15:30:03	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (0), Time: 0s
+2024-07-11 15:30:03	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 0s
+2024-07-11 15:30:03	debug	logger/gin.go:52	| 200 |       589.6µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:30:12	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES ('MTgxMTMwMTk1MTEzMjkzMDA0OA==', '1', 'aaa');
+SQL Template ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES (?, ?, ?);
+Parameter: [MTgxMTMwMTk1MTEzMjkzMDA0OA== 1 aaa], Count: (1), Time: 2.5527ms
+2024-07-11 15:30:12	debug	logger/gin.go:52	| 200 |      6.6559ms |             ::1 | POST     "/api/chat/conversation/create" 
+2024-07-11 15:30:12	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (1), Time: 0s
+2024-07-11 15:30:12	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 0s
+2024-07-11 15:30:12	debug	logger/gin.go:52	| 200 |       806.5µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:30:12	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMTk1MTEzMjkzMDA0OA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxMTMwMTk1MTEzMjkzMDA0OA==] Count: (0), Time: 0s
+2024-07-11 15:30:12	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMTk1MTEzMjkzMDA0OA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxMTMwMTk1MTEzMjkzMDA0OA==] Time: 0s
+2024-07-11 15:30:12	debug	logger/gin.go:52	| 200 |      1.3787ms |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxMTMwMTk1MTEzMjkzMDA0OA%3D%3D" 
+2024-07-11 15:30:12	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 0s
+2024-07-11 15:30:12	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 0s
+2024-07-11 15:30:12	debug	logger/gin.go:52	| 200 |       513.2µs |             ::1 | GET      "/api/chat/plugin" 
+2024-07-11 15:31:22	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update
+            app_chat_conversation
+        set is_delete=1
+        where user_id = '1'
+          and id = 'MTgxMTMwMTk1MTEzMjkzMDA0OA==';
+SQL Template ==> update
+            app_chat_conversation
+        set is_delete=1
+        where user_id = ?
+          and id = ?;
+Parameter: [1 MTgxMTMwMTk1MTEzMjkzMDA0OA==], Count: (1), Time: 1.0557ms
+2024-07-11 15:31:22	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update
+            app_chat_message
+        set is_delete=1
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMTk1MTEzMjkzMDA0OA==';
+SQL Template ==> update
+            app_chat_message
+        set is_delete=1
+        where user_id = ?
+          and conversation_id = ?;
+Parameter: [1 MTgxMTMwMTk1MTEzMjkzMDA0OA==], Count: (0), Time: 0s
+2024-07-11 15:31:22	debug	logger/gin.go:52	| 200 |        5.33ms |             ::1 | POST     "/api/chat/conversation/del" 
+2024-07-11 15:31:22	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (0), Time: 0s
+2024-07-11 15:31:22	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 0s
+2024-07-11 15:31:22	debug	logger/gin.go:52	| 200 |      1.3298ms |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:31:26	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES ('MTgxMTMwMjI2MzA1NDkyOTkyMA==', '1', 'aaa');
+SQL Template ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES (?, ?, ?);
+Parameter: [MTgxMTMwMjI2MzA1NDkyOTkyMA== 1 aaa], Count: (1), Time: 2.0644ms
+2024-07-11 15:31:26	debug	logger/gin.go:52	| 200 |      6.6903ms |             ::1 | POST     "/api/chat/conversation/create" 
+2024-07-11 15:31:26	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (1), Time: 1.0128ms
+2024-07-11 15:31:26	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 1.0128ms
+2024-07-11 15:31:26	debug	logger/gin.go:52	| 200 |      1.5207ms |             ::1 | GET      "/api/chat/conversation/get" 
+2024-07-11 15:31:26	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMjI2MzA1NDkyOTkyMA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxMTMwMjI2MzA1NDkyOTkyMA==] Count: (0), Time: 0s
+2024-07-11 15:31:26	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 0s
+2024-07-11 15:31:26	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxMTMwMjI2MzA1NDkyOTkyMA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxMTMwMjI2MzA1NDkyOTkyMA==] Time: 0s
+2024-07-11 15:31:26	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 505.1µs
+2024-07-11 15:31:26	debug	logger/gin.go:52	| 200 |      1.6277ms |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxMTMwMjI2MzA1NDkyOTkyMA%3D%3D" 
+2024-07-11 15:31:26	debug	logger/gin.go:52	| 200 |       505.1µs |             ::1 | GET      "/api/chat/plugin" 
+2024-07-11 16:15:38	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:356	load mapper file path:[mapper/file/gpt.xml]
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:356	load mapper file path:[mapper/file/template.xml]
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:162	Start scanning the mapper mapping function
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:178	Starts loading the 'GptMapper' mapping resolution
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.CreateConversation (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.DelConversation (interface {}, *sql.Tx) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.DeleteModel (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.UpdateConversationLastMsg (interface {}, *sql.Tx) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.ModelInfo (interface {}) (*model.LLmModel, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.SelectMessageItem (interface {}) (*model.AppChatMessage, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.DeleteMessage (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.CreateModel (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.CreateMessage (interface {}, *sql.Tx) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.UpdateModelDownloadStatus (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.InsertKnowledgeFile (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.InitCheck () (int64, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.CreateKnowledge (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.DeleteConversationMessage (interface {}, *sql.Tx) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.ConversationHistory (interface {}) ([]model.AppChatMessage, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.ConversationList (interface {}) ([]model.AppChatConversationItem, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.DeleteKnowledge (interface {}) error
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.ModelList (interface {}) ([]model.LLmModel, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.ModelExists (interface {}) (bool, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.GetUserAvatar (interface {}) (string, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.SelectModel (interface {}) (*model.LLmModel, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeFileList (interface {}) ([]*model.AppChatKnowledgeFile, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.BaseModelList (interface {}) ([]model.LLmModel, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeFileListById (interface {}) ([]*model.AppChatKnowledgeFile, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.GetModelAvatar (interface {}) (string, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeList (interface {}) ([]*model.AppChatKnowledgeInstance, error)
+2024-07-12 11:12:29	debug	gobatis/gobatis.go:198	GptMapper.GetGptPlugin () ([]*model.AppChatPlugin, error)
+2024-07-12 11:12:29	debug	gobatis/mapping.go:185	
+SQL Statements ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+SQL Template ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+Parameter: [] Count: (1), Time: 516.8µs
+2024-07-12 11:12:29	debug	gobatis/mapping.go:189	
+SQL Statements ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+SQL Template ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+Parameter: [] Time: 516.8µs

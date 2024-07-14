@@ -22,7 +22,6 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.22
 	github.com/ollama/ollama v0.1.34
 	github.com/philippgille/chromem-go v0.6.0
-	github.com/qdrant/go-client v1.10.0
 	go.uber.org/zap v1.27.0
 	google.golang.org/grpc v1.62.1
 	google.golang.org/protobuf v1.34.1

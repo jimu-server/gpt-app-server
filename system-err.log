@@ -6,3 +6,44 @@
 2024-07-11 14:50:37	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
 2024-07-11 15:29:16	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
 2024-07-11 16:15:38	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-07-23 12:27:02	error	web/error.go:33	goroutine 69 [running]:
+runtime/debug.Stack()
+	E:/dev/env/golangs/go1.22.4.windows-amd64/go/src/runtime/debug/stack.go:24 +0x5e
+github.com/jimu-server/gpt-desktop/web.init.0.GlobalException.func2.1()
+	E:/dev/code/go/jimu-server/GPT-Desktop/web/error.go:33 +0x337
+panic({0x7ff7a8419ce0?, 0xc0005a6360?})
+	E:/dev/env/golangs/go1.22.4.windows-amd64/go/src/runtime/panic.go:770 +0x132
+github.com/jimu-server/gpt-desktop/gpt/control/service.SendChatStreamMessage(0xc000514200, {{{0x0, 0x0, 0x0}}, {0xc0005043c0, 0x1c}, {0xc000422300, 0x24}, {0xc0005043e0, 0x1c}, ...})
+	E:/dev/code/go/jimu-server/GPT-Desktop/gpt/control/service/ollama_service.go:78 +0xa4c
+github.com/jimu-server/gpt-desktop/gpt/control.ChatStream(0xc000514200)
+	E:/dev/code/go/jimu-server/GPT-Desktop/gpt/control/ollama_control.go:31 +0x85
+github.com/gin-gonic/gin.(*Context).Next(0xc000514200)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185 +0x2b
+github.com/jimu-server/gpt-desktop/gpt.init.0.GptAuthorization.func1(0xc000514200)
+	E:/dev/code/go/jimu-server/GPT-Desktop/auth/middlewares.go:42 +0x1c7
+github.com/gin-gonic/gin.(*Context).Next(0xc000514200)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185 +0x2b
+github.com/jimu-server/gpt-desktop/web.init.0.Cors.func3(0xc000514200)
+	E:/dev/code/go/jimu-server/GPT-Desktop/web/init.go:30 +0x13e
+github.com/gin-gonic/gin.(*Context).Next(0xc000514200)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185 +0x2b
+github.com/jimu-server/gpt-desktop/web.init.0.GlobalException.func2(0xc0000457e8?)
+	E:/dev/code/go/jimu-server/GPT-Desktop/web/error.go:36 +0x45
+github.com/gin-gonic/gin.(*Context).Next(0xc000514200)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185 +0x2b
+github.com/jimu-server/gpt-desktop/web.init.0.GinLogger.func1(0xc000514200)
+	E:/dev/code/go/jimu-server/logger/gin.go:32 +0x8a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000c29c0, 0xc000514200)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:633 +0x892
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000c29c0, {0x7ff7a863e740, 0xc00014f0a0}, 0xc00037a000)
+	E:/dev/code/go/src/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:589 +0x1b2
+net/http.serverHandler.ServeHTTP({0x7ff7a863bc78?}, {0x7ff7a863e740?, 0xc00014f0a0?}, 0x6?)
+	E:/dev/env/golangs/go1.22.4.windows-amd64/go/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0004b6f30, {0x7ff7a86405e8, 0xc000433b30})
+	E:/dev/env/golangs/go1.22.4.windows-amd64/go/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 82
+	E:/dev/env/golangs/go1.22.4.windows-amd64/go/src/net/http/server.go:3285 +0x4b4
+
+2024-07-23 12:29:43	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}

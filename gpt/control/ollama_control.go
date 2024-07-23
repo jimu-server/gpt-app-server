@@ -8,7 +8,7 @@ import (
 	"github.com/jimu-server/common/resp"
 	"github.com/jimu-server/gpt-desktop/auth"
 	"github.com/jimu-server/gpt-desktop/gpt/args"
-	"github.com/jimu-server/gpt/control/service"
+	"github.com/jimu-server/gpt-desktop/gpt/control/service"
 	"github.com/jimu-server/gpt/llm-sdk"
 	"github.com/jimu-server/gpt/vector"
 	"github.com/jimu-server/model"

@@ -1,10 +1,12 @@
-package llm_sdk
+package ollama
 
 import (
 	"bufio"
 	"bytes"
 	"errors"
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"github.com/jimu-server/gpt-desktop/gpt/llm-sdk"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/ollama/ollama/api"
 	"github.com/ollama/ollama/format"
@@ -60,7 +62,7 @@ func (s *ollamaStream[T]) Data() T {
 	return s.entity
 }
 
-type DataEvent[T any] <-chan LLMStream[T]
+type DataEvent[T any] <-chan llm_sdk.LLMStream[T]
 
 // Chat
 // 模型对话聊天
@@ -209,7 +211,7 @@ func CreateModel[T any](req *api.CreateRequest) (DataEvent[T], error) {
 }
 
 func stream[T any](response *http.Response) (DataEvent[T], error) {
-	send := make(chan LLMStream[T], 100)
+	send := make(chan llm_sdk.LLMStream[T], 100)
 	go func() {
 		var err error
 		var buf []byte
@@ -290,6 +292,14 @@ type OllamaSdk struct {
 	url    string
 	host   string
 	port   string
+}
+
+func (sdk *OllamaSdk) DefaultChat(ctx *gin.Context) {
+
+}
+
+func (sdk *OllamaSdk) KnowledgeChat(ctx *gin.Context) {
+
 }
 
 func (sdk *OllamaSdk) Clone() *OllamaSdk {

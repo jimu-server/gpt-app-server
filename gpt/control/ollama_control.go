@@ -9,8 +9,9 @@ import (
 	"github.com/jimu-server/gpt-desktop/auth"
 	"github.com/jimu-server/gpt-desktop/gpt/args"
 	"github.com/jimu-server/gpt-desktop/gpt/control/service"
-	"github.com/jimu-server/gpt/llm-sdk"
-	"github.com/jimu-server/gpt/vector"
+	"github.com/jimu-server/gpt-desktop/gpt/llm-sdk/ollama"
+	"github.com/jimu-server/gpt-desktop/gpt/vector"
+	llm_sdk "github.com/jimu-server/gpt/llm-sdk"
 	"github.com/jimu-server/model"
 	"github.com/jimu-server/office"
 	"github.com/jimu-server/util/treeutils/tree"
@@ -40,7 +41,7 @@ func KnowledgeChatStream(c *gin.Context) {
 func GetLLmModel(c *gin.Context) {
 	var err error
 	var result *api.ListResponse
-	if result, err = llm_sdk.ModelList("http://127.0.0.1:11434"); err != nil {
+	if result, err = ollama.ModelList("http://127.0.0.1:11434"); err != nil {
 		c.JSON(500, resp.Error(err, resp.Msg("拉取失败")))
 		return
 	}

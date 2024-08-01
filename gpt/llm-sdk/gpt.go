@@ -2,6 +2,7 @@ package llm_sdk
 
 import (
 	"bytes"
+	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
@@ -9,6 +10,13 @@ const (
 	// Segmentation 流消息分割符号
 	Segmentation = "\n"
 )
+
+type GPT interface {
+	// DefaultChat 默认聊天
+	DefaultChat(ctx *gin.Context)
+	// KnowledgeChat 知识库聊天
+	KnowledgeChat(ctx *gin.Context)
+}
 
 type LLMStream[T any] interface {
 	// Body 获取完整消息

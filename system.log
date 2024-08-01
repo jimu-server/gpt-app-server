@@ -6730,3 +6730,1348 @@ SQL Template ==> select *
 Parameter: [] Time: 507µs
 2024-07-23 13:20:17	debug	logger/gin.go:52	| 200 |       1.184ms |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxNTYxNzkxMjA0MDMyOTIxNg%3D%3D" 
 2024-07-23 13:20:17	debug	logger/gin.go:52	| 200 |      1.0272ms |             ::1 | GET      "/api/chat/plugin" 
+2024-07-23 14:25:29	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_knowledge_instance
+        where user_id = '1'
+SQL Template ==> select *
+        from app_chat_knowledge_instance
+        where user_id = ?
+Parameter: [1] Count: (0), Time: 0s
+2024-07-23 14:25:29	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_knowledge_instance
+        where user_id = '1'
+SQL Template ==> select *
+        from app_chat_knowledge_instance
+        where user_id = ?
+Parameter: [1] Time: 523.2µs
+2024-07-23 14:25:29	debug	logger/gin.go:52	| 200 |       594.9µs |             ::1 | GET      "/api/chat/knowledge/list" 
+2024-07-23 14:38:41	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:356	load mapper file path:[mapper/file/gpt.xml]
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:356	load mapper file path:[mapper/file/template.xml]
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:162	Start scanning the mapper mapping function
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:178	Starts loading the 'GptMapper' mapping resolution
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.SelectMessageItem (interface {}) (*model.AppChatMessage, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.CreateConversation (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.CreateMessage (interface {}, *sql.Tx) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.BaseModelList (interface {}) ([]model.LLmModel, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeList (interface {}) ([]*model.AppChatKnowledgeInstance, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.DeleteModel (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.DeleteConversationMessage (interface {}, *sql.Tx) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.DelConversation (interface {}, *sql.Tx) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.DeleteMessage (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.GetGptPlugin () ([]*model.AppChatPlugin, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.ConversationList (interface {}) ([]model.AppChatConversationItem, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.UpdateConversationLastMsg (interface {}, *sql.Tx) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeFileList (interface {}) ([]*model.AppChatKnowledgeFile, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.KnowledgeFileListById (interface {}) ([]*model.AppChatKnowledgeFile, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.UpdateModelDownloadStatus (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.GetUserAvatar (interface {}) (string, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.ModelExists (interface {}) (bool, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.CreateModel (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.GetModelAvatar (interface {}) (string, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.ConversationHistory (interface {}) ([]model.AppChatMessage, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.CreateKnowledge (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.DeleteKnowledge (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.InitCheck () (int64, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.ModelList (interface {}) ([]model.LLmModel, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.ModelInfo (interface {}) (*model.LLmModel, error)
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.InsertKnowledgeFile (interface {}) error
+2024-08-01 13:08:55	debug	gobatis/gobatis.go:198	GptMapper.SelectModel (interface {}) (*model.LLmModel, error)
+2024-08-01 13:08:55	debug	gobatis/mapping.go:185	
+SQL Statements ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+SQL Template ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+Parameter: [] Count: (1), Time: 505.3µs
+2024-08-01 13:08:55	debug	gobatis/mapping.go:189	
+SQL Statements ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+SQL Template ==> SELECT count(*)
+        FROM sqlite_master
+        WHERE type = 'table'
+Parameter: [] Time: 505.3µs
+2024-08-01 13:09:21	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (1), Time: 521.8µs
+2024-08-01 13:09:21	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 1.0404ms
+2024-08-01 13:09:21	debug	logger/gin.go:52	| 200 |      1.0404ms |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:09:21	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (1), Time: 524.7µs
+2024-08-01 13:09:21	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 524.7µs
+2024-08-01 13:09:21	debug	logger/gin.go:52	| 200 |      1.0451ms |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:09:21	debug	logger/gin.go:52	| 200 |     15.2445ms |             ::1 | GET      "/api/chat/model/list" 
+2024-08-01 13:09:33	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxNTYxNzkxMjA0MDMyOTIxNg==] Count: (0), Time: 0s
+2024-08-01 13:09:33	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxNTYxNzkxMjA0MDMyOTIxNg==] Time: 504.3µs
+2024-08-01 13:09:33	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 504.3µs
+2024-08-01 13:09:33	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 504.3µs
+2024-08-01 13:09:33	debug	logger/gin.go:52	| 200 |       558.3µs |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxNTYxNzkxMjA0MDMyOTIxNg%3D%3D" 
+2024-08-01 13:09:33	debug	logger/gin.go:52	| 200 |      1.0271ms |             ::1 | GET      "/api/chat/plugin" 
+2024-08-01 13:10:44	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('MTgxODg3Njk5ODgxOTI1NDI3Mg==', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'MTgxODg3Njk5ODgxOTI1NDI3Mg==', '1', 'qwen2:7b', 'https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg', 'user', '介绍一下你自己
+', '2024-08-01 13:10:44')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [MTgxODg3Njk5ODgxOTI1NDI3Mg== MTgxNTYxNzkxMjA0MDMyOTIxNg== MTgxODg3Njk5ODgxOTI1NDI3Mg== 1 qwen2:7b https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg user 介绍一下你自己
+ 2024-08-01 13:10:44], Count: (1), Time: 504.6µs
+2024-08-01 13:10:44	debug	logger/gin.go:52	| 200 |       5.687ms |             ::1 | POST     "/api/chat/send" 
+2024-08-01 13:10:53	debug	gobatis/mapping.go:185	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Count: (0), Time: 505.9µs
+2024-08-01 13:10:53	debug	gobatis/mapping.go:189	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Time: 505.9µs
+2024-08-01 13:10:53	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('a6b962b4-ad00-4715-a177-db4c7cd26269', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'MTgxODg3Njk5ODgxOTI1NDI3Mg==', '1', 'qwen2:7b', '', 'assistant', '我是通义千问，由阿里云研发的AI助手。我的主要功能是生成与给定词语相关的高质量文本，能够进行多模态预测和理解，比如图片描述、代码生成等。我被设计用来帮助用户提高创作效率，提供创意灵感，或者解答各种问题。无论是撰写文章、故事、诗歌，还是解释概念、编写代码，我都尽力给出高质量的回答。同时，我也致力于保护用户隐私，并尊重各领域知识的版权，不会自行创造或传播违法不良信息。如果您有任何问题或需要帮助，请随时告诉我！', '2024-08-01 13:10:53')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [a6b962b4-ad00-4715-a177-db4c7cd26269 MTgxNTYxNzkxMjA0MDMyOTIxNg== MTgxODg3Njk5ODgxOTI1NDI3Mg== 1 qwen2:7b  assistant 我是通义千问，由阿里云研发的AI助手。我的主要功能是生成与给定词语相关的高质量文本，能够进行多模态预测和理解，比如图片描述、代码生成等。我被设计用来帮助用户提高创作效率，提供创意灵感，或者解答各种问题。无论是撰写文章、故事、诗歌，还是解释概念、编写代码，我都尽力给出高质量的回答。同时，我也致力于保护用户隐私，并尊重各领域知识的版权，不会自行创造或传播违法不良信息。如果您有任何问题或需要帮助，请随时告诉我！ 2024-08-01 13:10:53], Count: (1), Time: 518.7µs
+2024-08-01 13:10:53	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update app_chat_conversation
+        set last_msg='我是通义千问，由阿里云研发的AI助手。我的主要功能是生成与给定词语相关的高质量文本，能够进行多模态预测和理解，比如图片描述、代码生成等。我被设计用来帮助用户提高创作效率，提供创意灵感，或者解答各种问题。无论是撰写文章、故事、诗歌，还是解释概念、编写代码，我都尽力给出高质量的回答。同时，我也致力于保护用户隐私，并尊重各领域知识的版权，不会自行创造或传播违法不良信息。如果您有任何问题或需要帮助，请随时告诉我！', last_model='qwen2:7b', last_time='2024-08-01 13:10:53', picture=''
+        where id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+SQL Template ==> update app_chat_conversation
+        set last_msg=?, last_model=?, last_time=?, picture=?
+        where id = ?
+Parameter: [我是通义千问，由阿里云研发的AI助手。我的主要功能是生成与给定词语相关的高质量文本，能够进行多模态预测和理解，比如图片描述、代码生成等。我被设计用来帮助用户提高创作效率，提供创意灵感，或者解答各种问题。无论是撰写文章、故事、诗歌，还是解释概念、编写代码，我都尽力给出高质量的回答。同时，我也致力于保护用户隐私，并尊重各领域知识的版权，不会自行创造或传播违法不良信息。如果您有任何问题或需要帮助，请随时告诉我！ qwen2:7b 2024-08-01 13:10:53  MTgxNTYxNzkxMjA0MDMyOTIxNg==], Count: (1), Time: 0s
+2024-08-01 13:10:53	debug	logger/gin.go:52	| 200 |    9.5976026s |             ::1 | POST     "/api/chat/conversation" 
+2024-08-01 13:10:54	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = 'a6b962b4-ad00-4715-a177-db4c7cd26269'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [a6b962b4-ad00-4715-a177-db4c7cd26269] Count: (1), Time: 0s
+2024-08-01 13:10:54	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = 'a6b962b4-ad00-4715-a177-db4c7cd26269'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [a6b962b4-ad00-4715-a177-db4c7cd26269] Time: 506.8µs
+2024-08-01 13:10:54	debug	logger/gin.go:52	| 200 |       506.8µs |             ::1 | GET      "/api/chat/msg?id=a6b962b4-ad00-4715-a177-db4c7cd26269" 
+2024-08-01 13:11:57	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('MTgxODg3NzMwNDI1MjY2NTg1Ng==', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'a6b962b4-ad00-4715-a177-db4c7cd26269', '1', 'qwen2:7b', 'https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg', 'user', '1.11和1.2谁大
+', '2024-08-01 13:11:57')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [MTgxODg3NzMwNDI1MjY2NTg1Ng== MTgxNTYxNzkxMjA0MDMyOTIxNg== a6b962b4-ad00-4715-a177-db4c7cd26269 1 qwen2:7b https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg user 1.11和1.2谁大
+ 2024-08-01 13:11:57], Count: (1), Time: 2.0393ms
+2024-08-01 13:11:57	debug	logger/gin.go:52	| 200 |      6.7655ms |             ::1 | POST     "/api/chat/send" 
+2024-08-01 13:11:59	debug	gobatis/mapping.go:185	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Count: (0), Time: 505.9µs
+2024-08-01 13:11:59	debug	gobatis/mapping.go:189	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Time: 505.9µs
+2024-08-01 13:11:59	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'MTgxODg3NzMwNDI1MjY2NTg1Ng==', '1', 'qwen2:7b', '', 'assistant', '1.2 大于 1.11。在比较两个小数时，首先看整数部分，如果整数部分相同，则从左至右依次比较每一位上的数字，直到找到不同的位置为止。在这个例子中，1.2的整数部分和小数部分均大于1.11，因此可以直接判断出1.2是更大的数。', '2024-08-01 13:11:59')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9 MTgxNTYxNzkxMjA0MDMyOTIxNg== MTgxODg3NzMwNDI1MjY2NTg1Ng== 1 qwen2:7b  assistant 1.2 大于 1.11。在比较两个小数时，首先看整数部分，如果整数部分相同，则从左至右依次比较每一位上的数字，直到找到不同的位置为止。在这个例子中，1.2的整数部分和小数部分均大于1.11，因此可以直接判断出1.2是更大的数。 2024-08-01 13:11:59], Count: (1), Time: 1.0354ms
+2024-08-01 13:11:59	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update app_chat_conversation
+        set last_msg='1.2 大于 1.11。在比较两个小数时，首先看整数部分，如果整数部分相同，则从左至右依次比较每一位上的数字，直到找到不同的位置为止。在这个例子中，1.2的整数部分和小数部分均大于1.11，因此可以直接判断出1.2是更大的数。', last_model='qwen2:7b', last_time='2024-08-01 13:11:59', picture=''
+        where id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+SQL Template ==> update app_chat_conversation
+        set last_msg=?, last_model=?, last_time=?, picture=?
+        where id = ?
+Parameter: [1.2 大于 1.11。在比较两个小数时，首先看整数部分，如果整数部分相同，则从左至右依次比较每一位上的数字，直到找到不同的位置为止。在这个例子中，1.2的整数部分和小数部分均大于1.11，因此可以直接判断出1.2是更大的数。 qwen2:7b 2024-08-01 13:11:59  MTgxNTYxNzkxMjA0MDMyOTIxNg==], Count: (1), Time: 0s
+2024-08-01 13:11:59	debug	logger/gin.go:52	| 200 |    1.9102227s |             ::1 | POST     "/api/chat/conversation" 
+2024-08-01 13:11:59	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = 'bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9] Count: (1), Time: 0s
+2024-08-01 13:11:59	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = 'bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9] Time: 0s
+2024-08-01 13:11:59	debug	logger/gin.go:52	| 200 |       1.508ms |             ::1 | GET      "/api/chat/msg?id=bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9" 
+2024-08-01 13:12:40	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('MTgxODg3NzQ4NzAxNTI2ODM1Mg==', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9', '1', 'qwen2:7b', 'https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg', 'user', '使用Java实现一个贪食蛇小游戏
+', '2024-08-01 13:12:40')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [MTgxODg3NzQ4NzAxNTI2ODM1Mg== MTgxNTYxNzkxMjA0MDMyOTIxNg== bfc198fc-f9d4-4fd0-9403-bdba51d0bfb9 1 qwen2:7b https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg user 使用Java实现一个贪食蛇小游戏
+ 2024-08-01 13:12:40], Count: (1), Time: 503.6µs
+2024-08-01 13:12:40	debug	logger/gin.go:52	| 200 |      5.4614ms |             ::1 | POST     "/api/chat/send" 
+2024-08-01 13:12:58	debug	gobatis/mapping.go:185	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Count: (0), Time: 0s
+2024-08-01 13:12:58	debug	gobatis/mapping.go:189	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Time: 504.5µs
+2024-08-01 13:12:58	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('282dc48e-95c4-4d5f-9b48-a45c9009c666', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'MTgxODg3NzQ4NzAxNTI2ODM1Mg==', '1', 'qwen2:7b', '', 'assistant', '要创建一个简单的贪食蛇游戏，我们可以基于 Java Swing 或者其他图形库（如 JMonkeyEngine、JavaFX 等）来实现。在这里我将提供基于 Java Swing 的一个基本实现示例。
+
+**步骤 1: 创建项目**
+
+首先，确保你有 Java 开发环境（JDK 和 IDE 如 IntelliJ IDEA, Eclipse 等）。创建一个新的 Maven 或者 Gradle 项目，并在 `src/main/java` 文件夹下添加一个主类（例如 GameMain.java）来启动游戏。
+
+**步骤 2: 设计窗口**
+
+使用 Swing 构件（如 JFrame、JPanel、JLabel 等）来构建游戏界面。JFrame 将是你的主要容器，而 JPanel 用于绘制蛇和食物等元素。
+
+```java
+import javax.swing.*;
+import java.awt.*;
+
+public class GameMain extends JFrame {
+    public GameMain() {
+        setSize(600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null); // 居中显示窗口
+
+        // 创建游戏面板并添加到主窗体上
+        GameController gameController = new GameController();
+        add(gameController, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GameMain();
+    }
+}
+```
+
+**步骤 3: 实现逻辑**
+
+创建一个 `GameController` 类来处理游戏逻辑。
+
+```java
+import java.awt.*;
+import java.util.*;
+
+public class GameController extends JPanel implements Runnable {
+
+    private final int SIZE = 20;
+    private long delayTime = 150; // 游戏速度（毫秒）
+    private Thread gameThread;
+    private Snake snake;
+    private Food food;
+
+    public GameController() {
+        snake = new Snake(SIZE);
+        food = new Food(this);
+
+        startGame();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        drawSnake(g);
+        drawFood(g);
+    }
+
+    private void drawSnake(Graphics g) {
+        for (Point p : snake.getBody()) {
+            g.setColor(Color.RED);
+            g.fillRect(p.x * SIZE, p.y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    private void drawFood(Graphics g) {
+        if (food != null && food.getPoint() != null) {
+            g.setColor(Color.BLUE);
+            g.fillRect(food.getPoint().x * SIZE, food.getPoint().y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    public void startGame() {
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            // 游戏逻辑，如检测碰撞、更新蛇的位置等。
+            // 这里仅示例代码框架。
+
+            try {
+                Thread.sleep(delayTime);
+            } catch (InterruptedException e) {
+                return;
+            }
+
+            repaint();
+        }
+    }
+}
+```
+
+**步骤 4: 实现 Snake 和 Food 类**
+
+创建 `Snake` 类来处理蛇的移动逻辑，以及 `Food` 类用于生成食物。
+
+```java
+public class Snake {
+    private Point head;
+    private int size;
+
+    public Snake(int size) {
+        this.size = size;
+        head = new Point(SIZE, SIZE);
+    }
+
+    // 移动蛇的方法等...
+
+}
+
+public class Food {
+    private Point point;
+
+    public Food(GameController controller) {
+        generateFood(controller);
+    }
+
+    // 生成食物的方法等...
+}
+```
+
+这个基本框架提供了游戏的主要组件和逻辑。你需要填充细节，如检测蛇的移动、碰撞处理、用户输入（比如通过键盘控制蛇的方向）、游戏结束条件等。
+
+**步骤 5: 测试并调整**
+
+运行你的项目，并进行测试以确保所有功能按预期工作。根据需要调整参数或设计元素。
+
+这是一个简化的实现示例。为了构建完整的贪食蛇游戏，你需要添加更多细节和逻辑处理。例如，在 Snake 类中可能有更复杂的移动方法、碰撞检测等。在 Food 类中则可能包括随机生成食物位置的逻辑。同时，用户界面也需要进行优化以提供更好的视觉体验。
+
+希望这个概述能帮助你开始构建你的贪食蛇游戏！', '2024-08-01 13:12:58')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [282dc48e-95c4-4d5f-9b48-a45c9009c666 MTgxNTYxNzkxMjA0MDMyOTIxNg== MTgxODg3NzQ4NzAxNTI2ODM1Mg== 1 qwen2:7b  assistant 要创建一个简单的贪食蛇游戏，我们可以基于 Java Swing 或者其他图形库（如 JMonkeyEngine、JavaFX 等）来实现。在这里我将提供基于 Java Swing 的一个基本实现示例。
+
+**步骤 1: 创建项目**
+
+首先，确保你有 Java 开发环境（JDK 和 IDE 如 IntelliJ IDEA, Eclipse 等）。创建一个新的 Maven 或者 Gradle 项目，并在 `src/main/java` 文件夹下添加一个主类（例如 GameMain.java）来启动游戏。
+
+**步骤 2: 设计窗口**
+
+使用 Swing 构件（如 JFrame、JPanel、JLabel 等）来构建游戏界面。JFrame 将是你的主要容器，而 JPanel 用于绘制蛇和食物等元素。
+
+```java
+import javax.swing.*;
+import java.awt.*;
+
+public class GameMain extends JFrame {
+    public GameMain() {
+        setSize(600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null); // 居中显示窗口
+
+        // 创建游戏面板并添加到主窗体上
+        GameController gameController = new GameController();
+        add(gameController, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GameMain();
+    }
+}
+```
+
+**步骤 3: 实现逻辑**
+
+创建一个 `GameController` 类来处理游戏逻辑。
+
+```java
+import java.awt.*;
+import java.util.*;
+
+public class GameController extends JPanel implements Runnable {
+
+    private final int SIZE = 20;
+    private long delayTime = 150; // 游戏速度（毫秒）
+    private Thread gameThread;
+    private Snake snake;
+    private Food food;
+
+    public GameController() {
+        snake = new Snake(SIZE);
+        food = new Food(this);
+
+        startGame();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        drawSnake(g);
+        drawFood(g);
+    }
+
+    private void drawSnake(Graphics g) {
+        for (Point p : snake.getBody()) {
+            g.setColor(Color.RED);
+            g.fillRect(p.x * SIZE, p.y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    private void drawFood(Graphics g) {
+        if (food != null && food.getPoint() != null) {
+            g.setColor(Color.BLUE);
+            g.fillRect(food.getPoint().x * SIZE, food.getPoint().y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    public void startGame() {
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            // 游戏逻辑，如检测碰撞、更新蛇的位置等。
+            // 这里仅示例代码框架。
+
+            try {
+                Thread.sleep(delayTime);
+            } catch (InterruptedException e) {
+                return;
+            }
+
+            repaint();
+        }
+    }
+}
+```
+
+**步骤 4: 实现 Snake 和 Food 类**
+
+创建 `Snake` 类来处理蛇的移动逻辑，以及 `Food` 类用于生成食物。
+
+```java
+public class Snake {
+    private Point head;
+    private int size;
+
+    public Snake(int size) {
+        this.size = size;
+        head = new Point(SIZE, SIZE);
+    }
+
+    // 移动蛇的方法等...
+
+}
+
+public class Food {
+    private Point point;
+
+    public Food(GameController controller) {
+        generateFood(controller);
+    }
+
+    // 生成食物的方法等...
+}
+```
+
+这个基本框架提供了游戏的主要组件和逻辑。你需要填充细节，如检测蛇的移动、碰撞处理、用户输入（比如通过键盘控制蛇的方向）、游戏结束条件等。
+
+**步骤 5: 测试并调整**
+
+运行你的项目，并进行测试以确保所有功能按预期工作。根据需要调整参数或设计元素。
+
+这是一个简化的实现示例。为了构建完整的贪食蛇游戏，你需要添加更多细节和逻辑处理。例如，在 Snake 类中可能有更复杂的移动方法、碰撞检测等。在 Food 类中则可能包括随机生成食物位置的逻辑。同时，用户界面也需要进行优化以提供更好的视觉体验。
+
+希望这个概述能帮助你开始构建你的贪食蛇游戏！ 2024-08-01 13:12:58], Count: (1), Time: 2.5969ms
+2024-08-01 13:12:58	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update app_chat_conversation
+        set last_msg='要创建一个简单的贪食蛇游戏，我们可以基于 Java Swing 或者其他图形库（如 JMonkeyEngine、JavaFX 等）来实现。在这里我将提供基于 Java Swing 的一个基本实现示例。
+
+**步骤 1: 创建项目**
+
+首先，确保你有 Java 开发环境（JDK 和 IDE 如 IntelliJ IDEA, Eclipse 等）。创建一个新的 Maven 或者 Gradle 项目，并在 `src/main/java` 文件夹下添加一个主类（例如 GameMain.java）来启动游戏。
+
+**步骤 2: 设计窗口**
+
+使用 Swing 构件（如 JFrame、JPanel、JLabel 等）来构建游戏界面。JFrame 将是你的主要容器，而 JPanel 用于绘制蛇和食物等元素。
+
+```java
+import javax.swing.*;
+import java.awt.*;
+
+public class GameMain extends JFrame {
+    public GameMain() {
+        setSize(600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null); // 居中显示窗口
+
+        // 创建游戏面板并添加到主窗体上
+        GameController gameController = new GameController();
+        add(gameController, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GameMain();
+    }
+}
+```
+
+**步骤 3: 实现逻辑**
+
+创建一个 `GameController` 类来处理游戏逻辑。
+
+```java
+import java.awt.*;
+import java.util.*;
+
+public class GameController extends JPanel implements Runnable {
+
+    private final int SIZE = 20;
+    private long delayTime = 150; // 游戏速度（毫秒）
+    private Thread gameThread;
+    private Snake snake;
+    private Food food;
+
+    public GameController() {
+        snake = new Snake(SIZE);
+        food = new Food(this);
+
+        startGame();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        drawSnake(g);
+        drawFood(g);
+    }
+
+    private void drawSnake(Graphics g) {
+        for (Point p : snake.getBody()) {
+            g.setColor(Color.RED);
+            g.fillRect(p.x * SIZE, p.y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    private void drawFood(Graphics g) {
+        if (food != null && food.getPoint() != null) {
+            g.setColor(Color.BLUE);
+            g.fillRect(food.getPoint().x * SIZE, food.getPoint().y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    public void startGame() {
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            // 游戏逻辑，如检测碰撞、更新蛇的位置等。
+            // 这里仅示例代码框架。
+
+            try {
+                Thread.sleep(delayTime);
+            } catch (InterruptedException e) {
+                return;
+            }
+
+            repaint();
+        }
+    }
+}
+```
+
+**步骤 4: 实现 Snake 和 Food 类**
+
+创建 `Snake` 类来处理蛇的移动逻辑，以及 `Food` 类用于生成食物。
+
+```java
+public class Snake {
+    private Point head;
+    private int size;
+
+    public Snake(int size) {
+        this.size = size;
+        head = new Point(SIZE, SIZE);
+    }
+
+    // 移动蛇的方法等...
+
+}
+
+public class Food {
+    private Point point;
+
+    public Food(GameController controller) {
+        generateFood(controller);
+    }
+
+    // 生成食物的方法等...
+}
+```
+
+这个基本框架提供了游戏的主要组件和逻辑。你需要填充细节，如检测蛇的移动、碰撞处理、用户输入（比如通过键盘控制蛇的方向）、游戏结束条件等。
+
+**步骤 5: 测试并调整**
+
+运行你的项目，并进行测试以确保所有功能按预期工作。根据需要调整参数或设计元素。
+
+这是一个简化的实现示例。为了构建完整的贪食蛇游戏，你需要添加更多细节和逻辑处理。例如，在 Snake 类中可能有更复杂的移动方法、碰撞检测等。在 Food 类中则可能包括随机生成食物位置的逻辑。同时，用户界面也需要进行优化以提供更好的视觉体验。
+
+希望这个概述能帮助你开始构建你的贪食蛇游戏！', last_model='qwen2:7b', last_time='2024-08-01 13:12:58', picture=''
+        where id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+SQL Template ==> update app_chat_conversation
+        set last_msg=?, last_model=?, last_time=?, picture=?
+        where id = ?
+Parameter: [要创建一个简单的贪食蛇游戏，我们可以基于 Java Swing 或者其他图形库（如 JMonkeyEngine、JavaFX 等）来实现。在这里我将提供基于 Java Swing 的一个基本实现示例。
+
+**步骤 1: 创建项目**
+
+首先，确保你有 Java 开发环境（JDK 和 IDE 如 IntelliJ IDEA, Eclipse 等）。创建一个新的 Maven 或者 Gradle 项目，并在 `src/main/java` 文件夹下添加一个主类（例如 GameMain.java）来启动游戏。
+
+**步骤 2: 设计窗口**
+
+使用 Swing 构件（如 JFrame、JPanel、JLabel 等）来构建游戏界面。JFrame 将是你的主要容器，而 JPanel 用于绘制蛇和食物等元素。
+
+```java
+import javax.swing.*;
+import java.awt.*;
+
+public class GameMain extends JFrame {
+    public GameMain() {
+        setSize(600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null); // 居中显示窗口
+
+        // 创建游戏面板并添加到主窗体上
+        GameController gameController = new GameController();
+        add(gameController, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GameMain();
+    }
+}
+```
+
+**步骤 3: 实现逻辑**
+
+创建一个 `GameController` 类来处理游戏逻辑。
+
+```java
+import java.awt.*;
+import java.util.*;
+
+public class GameController extends JPanel implements Runnable {
+
+    private final int SIZE = 20;
+    private long delayTime = 150; // 游戏速度（毫秒）
+    private Thread gameThread;
+    private Snake snake;
+    private Food food;
+
+    public GameController() {
+        snake = new Snake(SIZE);
+        food = new Food(this);
+
+        startGame();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        drawSnake(g);
+        drawFood(g);
+    }
+
+    private void drawSnake(Graphics g) {
+        for (Point p : snake.getBody()) {
+            g.setColor(Color.RED);
+            g.fillRect(p.x * SIZE, p.y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    private void drawFood(Graphics g) {
+        if (food != null && food.getPoint() != null) {
+            g.setColor(Color.BLUE);
+            g.fillRect(food.getPoint().x * SIZE, food.getPoint().y * SIZE, SIZE, SIZE);
+        }
+    }
+
+    public void startGame() {
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            // 游戏逻辑，如检测碰撞、更新蛇的位置等。
+            // 这里仅示例代码框架。
+
+            try {
+                Thread.sleep(delayTime);
+            } catch (InterruptedException e) {
+                return;
+            }
+
+            repaint();
+        }
+    }
+}
+```
+
+**步骤 4: 实现 Snake 和 Food 类**
+
+创建 `Snake` 类来处理蛇的移动逻辑，以及 `Food` 类用于生成食物。
+
+```java
+public class Snake {
+    private Point head;
+    private int size;
+
+    public Snake(int size) {
+        this.size = size;
+        head = new Point(SIZE, SIZE);
+    }
+
+    // 移动蛇的方法等...
+
+}
+
+public class Food {
+    private Point point;
+
+    public Food(GameController controller) {
+        generateFood(controller);
+    }
+
+    // 生成食物的方法等...
+}
+```
+
+这个基本框架提供了游戏的主要组件和逻辑。你需要填充细节，如检测蛇的移动、碰撞处理、用户输入（比如通过键盘控制蛇的方向）、游戏结束条件等。
+
+**步骤 5: 测试并调整**
+
+运行你的项目，并进行测试以确保所有功能按预期工作。根据需要调整参数或设计元素。
+
+这是一个简化的实现示例。为了构建完整的贪食蛇游戏，你需要添加更多细节和逻辑处理。例如，在 Snake 类中可能有更复杂的移动方法、碰撞检测等。在 Food 类中则可能包括随机生成食物位置的逻辑。同时，用户界面也需要进行优化以提供更好的视觉体验。
+
+希望这个概述能帮助你开始构建你的贪食蛇游戏！ qwen2:7b 2024-08-01 13:12:58  MTgxNTYxNzkxMjA0MDMyOTIxNg==], Count: (1), Time: 520.5µs
+2024-08-01 13:12:58	debug	logger/gin.go:52	| 200 |   17.6457292s |             ::1 | POST     "/api/chat/conversation" 
+2024-08-01 13:12:58	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = '282dc48e-95c4-4d5f-9b48-a45c9009c666'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [282dc48e-95c4-4d5f-9b48-a45c9009c666] Count: (1), Time: 0s
+2024-08-01 13:12:58	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = '282dc48e-95c4-4d5f-9b48-a45c9009c666'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [282dc48e-95c4-4d5f-9b48-a45c9009c666] Time: 0s
+2024-08-01 13:12:58	debug	logger/gin.go:52	| 200 |       790.9µs |             ::1 | GET      "/api/chat/msg?id=282dc48e-95c4-4d5f-9b48-a45c9009c666" 
+2024-08-01 13:14:32	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('MTgxODg3Nzk1NDczMDQ5NjAwMA==', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', '282dc48e-95c4-4d5f-9b48-a45c9009c666', '1', 'qwen2:7b', 'https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg', 'user', '设计一个关于党建系统的论文
+', '2024-08-01 13:14:32')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [MTgxODg3Nzk1NDczMDQ5NjAwMA== MTgxNTYxNzkxMjA0MDMyOTIxNg== 282dc48e-95c4-4d5f-9b48-a45c9009c666 1 qwen2:7b https://im-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg user 设计一个关于党建系统的论文
+ 2024-08-01 13:14:32], Count: (1), Time: 2.0394ms
+2024-08-01 13:14:32	debug	logger/gin.go:52	| 200 |      6.8425ms |             ::1 | POST     "/api/chat/send" 
+2024-08-01 13:14:46	debug	gobatis/mapping.go:185	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Count: (0), Time: 0s
+2024-08-01 13:14:46	debug	gobatis/mapping.go:189	
+SQL Statements ==> select picture
+        from app_chat_model
+        where id = 'qwen2:7b'
+SQL Template ==> select picture
+        from app_chat_model
+        where id = ?
+Parameter: [qwen2:7b] Time: 504.9µs
+2024-08-01 13:14:46	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES ('98500eed-1dff-494e-b458-be44c6be8341', 'MTgxNTYxNzkxMjA0MDMyOTIxNg==', 'MTgxODg3Nzk1NDczMDQ5NjAwMA==', '1', 'qwen2:7b', '', 'assistant', '### 论文标题：探索与实践：构建高效、透明的党建信息系统
+
+#### 摘要：
+随着科技的进步和信息技术的发展，党建工作系统逐渐从传统的纸质文档管理模式转向信息化管理。本文旨在探讨如何利用现代技术手段建立一套高效、透明且易于管理的党建信息系统，以提高党员管理和组织活动的效率，增强党的凝聚力和战斗力。通过分析现有系统的优势与不足，提出改进措施并实施应用案例，为其他党组织提供参考。
+
+#### 引言：
+在全面从严治党和加强基层党建工作的新形势下，构建一个科学、高效的党建信息管理系统显得尤为重要。本文将从需求分析、系统设计、技术实现、效果评估等几个方面展开论述，旨在为现代党的建设工作提供技术支持和管理思路。
+
+#### 第一部分：需求与目标分析
+**1. 需求调研：**
+   - 对现有党建工作流程进行详细梳理，识别存在的问题，如信息更新不及时、数据统计困难、党员参与度低等。
+   - 通过问卷调查、访谈等方式收集基层党组织和党员对党建信息化的需求。
+
+**2. 目标设定：**
+   - 提高党建工作效率与透明度。
+   - 加强党员教育管理，提高党员参与感和归属感。
+   - 实现数据的实时统计与分析，为决策提供依据。
+
+#### 第二部分：系统设计
+**1. 系统架构设计：**
+   - **前端展示层：**采用响应式Web设计，确保在各种设备上良好显示。
+   - **业务逻辑层：**实现党员信息管理、活动组织与跟踪、学习资源分享等功能模块。
+   - **数据存储层：**选择安全稳定的数据库管理系统（如MySQL、MongoDB）进行数据存储和管理。
+
+**2. 技术选型：**
+   - 前端技术栈可考虑使用React或Vue等现代JavaScript框架。
+   - 后端开发语言可选择Node.js或Python，依赖RESTful API标准构建服务接口。
+
+#### 第三部分：系统实施与优化
+**1. 实施步骤：**
+   - 系统规划与设计阶段，确保方案的可行性和可扩展性。
+   - 开发与测试阶段，严格把控代码质量并进行多轮测试验证。
+   - 上线前培训与用户指导，保证所有相关人员能熟练操作系统。
+
+**2. 优化策略：**
+   - 定期收集使用反馈，持续迭代功能和用户体验。
+   - 实施安全防护措施，保护数据不被非法访问或篡改。
+
+#### 第四部分：效果评估与案例分享
+**1. 效果评估指标：**
+   - 使用频率、系统响应速度、用户满意度评分等。
+
+**2. 案例分析：**
+   - 选取某地区或单位的党建信息系统实施案例，通过对比实施前后的数据变化（如党员参与度提升率、活动组织效率提高比例）来验证系统的实际效果。
+
+#### 结论：
+构建高效透明的党建信息管理系统不仅能够解决传统管理方式下的问题，还能为党建工作注入新的活力。通过科技手段提升管理和决策的现代化水平，是加强党的建设、推动基层治理能力现代化的重要途径。未来的研究与实践还应关注如何进一步优化用户体验、增强系统安全性，并探索更广泛的数字化转型在党务工作中的应用。
+
+---
+
+本文提供了一个关于党建信息系统构建的基本框架和思考路径，旨在激发更多的创新思维和实际操作方案。具体实施时还需结合实际情况进行详细规划和调整。', '2024-08-01 13:14:46')
+SQL Template ==> insert into app_chat_message(id, conversation_id, message_id, user_id, model_id, picture, role, content,
+                                     create_time)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Parameter: [98500eed-1dff-494e-b458-be44c6be8341 MTgxNTYxNzkxMjA0MDMyOTIxNg== MTgxODg3Nzk1NDczMDQ5NjAwMA== 1 qwen2:7b  assistant ### 论文标题：探索与实践：构建高效、透明的党建信息系统
+
+#### 摘要：
+随着科技的进步和信息技术的发展，党建工作系统逐渐从传统的纸质文档管理模式转向信息化管理。本文旨在探讨如何利用现代技术手段建立一套高效、透明且易于管理的党建信息系统，以提高党员管理和组织活动的效率，增强党的凝聚力和战斗力。通过分析现有系统的优势与不足，提出改进措施并实施应用案例，为其他党组织提供参考。
+
+#### 引言：
+在全面从严治党和加强基层党建工作的新形势下，构建一个科学、高效的党建信息管理系统显得尤为重要。本文将从需求分析、系统设计、技术实现、效果评估等几个方面展开论述，旨在为现代党的建设工作提供技术支持和管理思路。
+
+#### 第一部分：需求与目标分析
+**1. 需求调研：**
+   - 对现有党建工作流程进行详细梳理，识别存在的问题，如信息更新不及时、数据统计困难、党员参与度低等。
+   - 通过问卷调查、访谈等方式收集基层党组织和党员对党建信息化的需求。
+
+**2. 目标设定：**
+   - 提高党建工作效率与透明度。
+   - 加强党员教育管理，提高党员参与感和归属感。
+   - 实现数据的实时统计与分析，为决策提供依据。
+
+#### 第二部分：系统设计
+**1. 系统架构设计：**
+   - **前端展示层：**采用响应式Web设计，确保在各种设备上良好显示。
+   - **业务逻辑层：**实现党员信息管理、活动组织与跟踪、学习资源分享等功能模块。
+   - **数据存储层：**选择安全稳定的数据库管理系统（如MySQL、MongoDB）进行数据存储和管理。
+
+**2. 技术选型：**
+   - 前端技术栈可考虑使用React或Vue等现代JavaScript框架。
+   - 后端开发语言可选择Node.js或Python，依赖RESTful API标准构建服务接口。
+
+#### 第三部分：系统实施与优化
+**1. 实施步骤：**
+   - 系统规划与设计阶段，确保方案的可行性和可扩展性。
+   - 开发与测试阶段，严格把控代码质量并进行多轮测试验证。
+   - 上线前培训与用户指导，保证所有相关人员能熟练操作系统。
+
+**2. 优化策略：**
+   - 定期收集使用反馈，持续迭代功能和用户体验。
+   - 实施安全防护措施，保护数据不被非法访问或篡改。
+
+#### 第四部分：效果评估与案例分享
+**1. 效果评估指标：**
+   - 使用频率、系统响应速度、用户满意度评分等。
+
+**2. 案例分析：**
+   - 选取某地区或单位的党建信息系统实施案例，通过对比实施前后的数据变化（如党员参与度提升率、活动组织效率提高比例）来验证系统的实际效果。
+
+#### 结论：
+构建高效透明的党建信息管理系统不仅能够解决传统管理方式下的问题，还能为党建工作注入新的活力。通过科技手段提升管理和决策的现代化水平，是加强党的建设、推动基层治理能力现代化的重要途径。未来的研究与实践还应关注如何进一步优化用户体验、增强系统安全性，并探索更广泛的数字化转型在党务工作中的应用。
+
+---
+
+本文提供了一个关于党建信息系统构建的基本框架和思考路径，旨在激发更多的创新思维和实际操作方案。具体实施时还需结合实际情况进行详细规划和调整。 2024-08-01 13:14:46], Count: (1), Time: 2.5662ms
+2024-08-01 13:14:46	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> update app_chat_conversation
+        set last_msg='### 论文标题：探索与实践：构建高效、透明的党建信息系统
+
+#### 摘要：
+随着科技的进步和信息技术的发展，党建工作系统逐渐从传统的纸质文档管理模式转向信息化管理。本文旨在探讨如何利用现代技术手段建立一套高效、透明且易于管理的党建信息系统，以提高党员管理和组织活动的效率，增强党的凝聚力和战斗力。通过分析现有系统的优势与不足，提出改进措施并实施应用案例，为其他党组织提供参考。
+
+#### 引言：
+在全面从严治党和加强基层党建工作的新形势下，构建一个科学、高效的党建信息管理系统显得尤为重要。本文将从需求分析、系统设计、技术实现、效果评估等几个方面展开论述，旨在为现代党的建设工作提供技术支持和管理思路。
+
+#### 第一部分：需求与目标分析
+**1. 需求调研：**
+   - 对现有党建工作流程进行详细梳理，识别存在的问题，如信息更新不及时、数据统计困难、党员参与度低等。
+   - 通过问卷调查、访谈等方式收集基层党组织和党员对党建信息化的需求。
+
+**2. 目标设定：**
+   - 提高党建工作效率与透明度。
+   - 加强党员教育管理，提高党员参与感和归属感。
+   - 实现数据的实时统计与分析，为决策提供依据。
+
+#### 第二部分：系统设计
+**1. 系统架构设计：**
+   - **前端展示层：**采用响应式Web设计，确保在各种设备上良好显示。
+   - **业务逻辑层：**实现党员信息管理、活动组织与跟踪、学习资源分享等功能模块。
+   - **数据存储层：**选择安全稳定的数据库管理系统（如MySQL、MongoDB）进行数据存储和管理。
+
+**2. 技术选型：**
+   - 前端技术栈可考虑使用React或Vue等现代JavaScript框架。
+   - 后端开发语言可选择Node.js或Python，依赖RESTful API标准构建服务接口。
+
+#### 第三部分：系统实施与优化
+**1. 实施步骤：**
+   - 系统规划与设计阶段，确保方案的可行性和可扩展性。
+   - 开发与测试阶段，严格把控代码质量并进行多轮测试验证。
+   - 上线前培训与用户指导，保证所有相关人员能熟练操作系统。
+
+**2. 优化策略：**
+   - 定期收集使用反馈，持续迭代功能和用户体验。
+   - 实施安全防护措施，保护数据不被非法访问或篡改。
+
+#### 第四部分：效果评估与案例分享
+**1. 效果评估指标：**
+   - 使用频率、系统响应速度、用户满意度评分等。
+
+**2. 案例分析：**
+   - 选取某地区或单位的党建信息系统实施案例，通过对比实施前后的数据变化（如党员参与度提升率、活动组织效率提高比例）来验证系统的实际效果。
+
+#### 结论：
+构建高效透明的党建信息管理系统不仅能够解决传统管理方式下的问题，还能为党建工作注入新的活力。通过科技手段提升管理和决策的现代化水平，是加强党的建设、推动基层治理能力现代化的重要途径。未来的研究与实践还应关注如何进一步优化用户体验、增强系统安全性，并探索更广泛的数字化转型在党务工作中的应用。
+
+---
+
+本文提供了一个关于党建信息系统构建的基本框架和思考路径，旨在激发更多的创新思维和实际操作方案。具体实施时还需结合实际情况进行详细规划和调整。', last_model='qwen2:7b', last_time='2024-08-01 13:14:46', picture=''
+        where id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+SQL Template ==> update app_chat_conversation
+        set last_msg=?, last_model=?, last_time=?, picture=?
+        where id = ?
+Parameter: [### 论文标题：探索与实践：构建高效、透明的党建信息系统
+
+#### 摘要：
+随着科技的进步和信息技术的发展，党建工作系统逐渐从传统的纸质文档管理模式转向信息化管理。本文旨在探讨如何利用现代技术手段建立一套高效、透明且易于管理的党建信息系统，以提高党员管理和组织活动的效率，增强党的凝聚力和战斗力。通过分析现有系统的优势与不足，提出改进措施并实施应用案例，为其他党组织提供参考。
+
+#### 引言：
+在全面从严治党和加强基层党建工作的新形势下，构建一个科学、高效的党建信息管理系统显得尤为重要。本文将从需求分析、系统设计、技术实现、效果评估等几个方面展开论述，旨在为现代党的建设工作提供技术支持和管理思路。
+
+#### 第一部分：需求与目标分析
+**1. 需求调研：**
+   - 对现有党建工作流程进行详细梳理，识别存在的问题，如信息更新不及时、数据统计困难、党员参与度低等。
+   - 通过问卷调查、访谈等方式收集基层党组织和党员对党建信息化的需求。
+
+**2. 目标设定：**
+   - 提高党建工作效率与透明度。
+   - 加强党员教育管理，提高党员参与感和归属感。
+   - 实现数据的实时统计与分析，为决策提供依据。
+
+#### 第二部分：系统设计
+**1. 系统架构设计：**
+   - **前端展示层：**采用响应式Web设计，确保在各种设备上良好显示。
+   - **业务逻辑层：**实现党员信息管理、活动组织与跟踪、学习资源分享等功能模块。
+   - **数据存储层：**选择安全稳定的数据库管理系统（如MySQL、MongoDB）进行数据存储和管理。
+
+**2. 技术选型：**
+   - 前端技术栈可考虑使用React或Vue等现代JavaScript框架。
+   - 后端开发语言可选择Node.js或Python，依赖RESTful API标准构建服务接口。
+
+#### 第三部分：系统实施与优化
+**1. 实施步骤：**
+   - 系统规划与设计阶段，确保方案的可行性和可扩展性。
+   - 开发与测试阶段，严格把控代码质量并进行多轮测试验证。
+   - 上线前培训与用户指导，保证所有相关人员能熟练操作系统。
+
+**2. 优化策略：**
+   - 定期收集使用反馈，持续迭代功能和用户体验。
+   - 实施安全防护措施，保护数据不被非法访问或篡改。
+
+#### 第四部分：效果评估与案例分享
+**1. 效果评估指标：**
+   - 使用频率、系统响应速度、用户满意度评分等。
+
+**2. 案例分析：**
+   - 选取某地区或单位的党建信息系统实施案例，通过对比实施前后的数据变化（如党员参与度提升率、活动组织效率提高比例）来验证系统的实际效果。
+
+#### 结论：
+构建高效透明的党建信息管理系统不仅能够解决传统管理方式下的问题，还能为党建工作注入新的活力。通过科技手段提升管理和决策的现代化水平，是加强党的建设、推动基层治理能力现代化的重要途径。未来的研究与实践还应关注如何进一步优化用户体验、增强系统安全性，并探索更广泛的数字化转型在党务工作中的应用。
+
+---
+
+本文提供了一个关于党建信息系统构建的基本框架和思考路径，旨在激发更多的创新思维和实际操作方案。具体实施时还需结合实际情况进行详细规划和调整。 qwen2:7b 2024-08-01 13:14:46  MTgxNTYxNzkxMjA0MDMyOTIxNg==], Count: (1), Time: 0s
+2024-08-01 13:14:46	debug	logger/gin.go:52	| 200 |   14.7877553s |             ::1 | POST     "/api/chat/conversation" 
+2024-08-01 13:14:47	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = '98500eed-1dff-494e-b458-be44c6be8341'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [98500eed-1dff-494e-b458-be44c6be8341] Count: (1), Time: 0s
+2024-08-01 13:14:47	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where id = '98500eed-1dff-494e-b458-be44c6be8341'
+SQL Template ==> select *
+        from app_chat_message
+        where id = ?
+Parameter: [98500eed-1dff-494e-b458-be44c6be8341] Time: 506.4µs
+2024-08-01 13:14:47	debug	logger/gin.go:52	| 200 |      1.1822ms |             ::1 | GET      "/api/chat/msg?id=98500eed-1dff-494e-b458-be44c6be8341" 
+2024-08-01 13:15:55	debug	gobatis/mapping.go:279	
+SQL Exec Statements ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES ('MTgxODg3ODMwMjkyOTAzMTE2OA==', '1', 'aa');
+SQL Template ==> insert into app_chat_conversation(id, user_id, title)
+        VALUES (?, ?, ?);
+Parameter: [MTgxODg3ODMwMjkyOTAzMTE2OA== 1 aa], Count: (1), Time: 1.0172ms
+2024-08-01 13:15:55	debug	logger/gin.go:52	| 200 |      5.3499ms |             ::1 | POST     "/api/chat/conversation/create" 
+2024-08-01 13:15:55	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (2), Time: 505.9µs
+2024-08-01 13:15:55	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 505.9µs
+2024-08-01 13:15:55	debug	logger/gin.go:52	| 200 |      2.0571ms |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:15:55	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxODg3ODMwMjkyOTAzMTE2OA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxODg3ODMwMjkyOTAzMTE2OA==] Count: (0), Time: 0s
+2024-08-01 13:15:55	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxODg3ODMwMjkyOTAzMTE2OA=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxODg3ODMwMjkyOTAzMTE2OA==] Time: 0s
+2024-08-01 13:15:55	debug	logger/gin.go:52	| 200 |      1.5782ms |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxODg3ODMwMjkyOTAzMTE2OA%3D%3D" 
+2024-08-01 13:15:57	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxNTYxNzkxMjA0MDMyOTIxNg==] Count: (8), Time: 0s
+2024-08-01 13:15:57	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_message
+        where user_id = '1'
+          and conversation_id = 'MTgxNTYxNzkxMjA0MDMyOTIxNg=='
+          and is_delete=0
+        order by create_time
+SQL Template ==> select *
+        from app_chat_message
+        where user_id = ?
+          and conversation_id = ?
+          and is_delete=0
+        order by create_time
+Parameter: [1 MTgxNTYxNzkxMjA0MDMyOTIxNg==] Time: 504.3µs
+2024-08-01 13:15:57	debug	logger/gin.go:52	| 200 |      1.2129ms |             ::1 | GET      "/api/chat/conversation/message?conversationId=MTgxNTYxNzkxMjA0MDMyOTIxNg%3D%3D" 
+2024-08-01 13:19:43	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 504.2µs
+2024-08-01 13:19:43	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 567µs
+2024-08-01 13:19:43	debug	logger/gin.go:52	| 200 |         567µs |             ::1 | GET      "/api/chat/plugin" 
+2024-08-01 13:19:43	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (2), Time: 503.6µs
+2024-08-01 13:19:43	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 503.6µs
+2024-08-01 13:19:43	debug	logger/gin.go:52	| 200 |       503.6µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:19:43	debug	logger/gin.go:52	| 200 |      2.0318ms |             ::1 | GET      "/api/chat/model/list" 
+2024-08-01 13:19:43	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (2), Time: 517.9µs
+2024-08-01 13:19:43	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 517.9µs
+2024-08-01 13:19:43	debug	logger/gin.go:52	| 200 |       517.9µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:20:26	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Count: (3), Time: 0s
+2024-08-01 13:20:26	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (2), Time: 0s
+2024-08-01 13:20:26	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_plugin
+SQL Template ==> select *
+        from app_chat_plugin
+Parameter: [] Time: 508.2µs
+2024-08-01 13:20:26	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 508.2µs
+2024-08-01 13:20:26	debug	logger/gin.go:52	| 200 |       601.4µs |             ::1 | GET      "/api/chat/plugin" 
+2024-08-01 13:20:26	debug	logger/gin.go:52	| 200 |       508.2µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:20:26	debug	logger/gin.go:52	| 200 |      1.8711ms |             ::1 | GET      "/api/chat/model/list" 
+2024-08-01 13:20:26	debug	gobatis/mapping.go:185	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Count: (2), Time: 0s
+2024-08-01 13:20:26	debug	gobatis/mapping.go:189	
+SQL Statements ==> select *
+        from app_chat_conversation
+        where user_id = '1' and is_delete=0
+        order by create_time;
+SQL Template ==> select *
+        from app_chat_conversation
+        where user_id = ? and is_delete=0
+        order by create_time;
+Parameter: [1] Time: 516.3µs
+2024-08-01 13:20:26	debug	logger/gin.go:52	| 200 |       516.3µs |             ::1 | GET      "/api/chat/conversation/get" 
+2024-08-01 13:23:28	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}

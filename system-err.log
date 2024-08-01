@@ -47,3 +47,5 @@ created by net/http.(*Server).Serve in goroutine 82
 	E:/dev/env/golangs/go1.22.4.windows-amd64/go/src/net/http/server.go:3285 +0x4b4
 
 2024-07-23 12:29:43	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-07-23 14:38:41	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}
+2024-08-01 13:23:28	error	GPT-Desktop/main.go:31	sync zap log error	{"error": "sync /dev/stdout: The handle is invalid."}

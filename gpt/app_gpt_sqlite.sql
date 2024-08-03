@@ -1,3 +1,13 @@
+drop table if exists app_setting;
+create table app_setting
+(
+    id          varchar(30) primary key,
+    name        varchar(100) not null,
+    value       varchar(500) not null,
+    setting     json                  default '{}',
+    create_time timestamp(0) not null default current_timestamp
+);
+
 drop table if exists app_chat_conversation;
 create table app_chat_conversation
 (

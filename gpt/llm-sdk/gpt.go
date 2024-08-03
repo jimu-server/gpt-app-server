@@ -14,8 +14,18 @@ const (
 type GPT interface {
 	// DefaultChat 默认聊天
 	DefaultChat(ctx *gin.Context)
+
 	// KnowledgeChat 知识库聊天
 	KnowledgeChat(ctx *gin.Context)
+
+	// CreateKnowledge 创建知识库
+	CreateKnowledge(ctx *gin.Context)
+
+	// GetKnowledge 获取知识库
+	GetKnowledge(ctx *gin.Context)
+
+	// DeleteKnowledge 删除知识库文件
+	DeleteKnowledge(ctx *gin.Context)
 }
 
 type LLMStream[T any] interface {

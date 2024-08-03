@@ -9,6 +9,7 @@ import (
 	"github.com/jimu-server/gpt-desktop/auth"
 	"github.com/jimu-server/gpt-desktop/gpt/args"
 	"github.com/jimu-server/gpt-desktop/gpt/control/service"
+
 	"github.com/jimu-server/gpt-desktop/gpt/llm-sdk/ollama"
 	"github.com/jimu-server/gpt-desktop/gpt/vector"
 	llm_sdk "github.com/jimu-server/gpt/llm-sdk"
@@ -25,6 +26,26 @@ import (
 	"mime/multipart"
 	"net/http"
 )
+
+func DefaultChat(c *gin.Context) {
+
+}
+
+func KnowledgeChat(c *gin.Context) {
+
+}
+
+func CreateKnowledge(c *gin.Context) {
+
+}
+
+func GetKnowledge(c *gin.Context) {
+
+}
+
+func DeleteKnowledge(c *gin.Context) {
+
+}
 
 func ChatStream(c *gin.Context) {
 	var params args.ChatArgs
@@ -319,7 +340,7 @@ func GetKnowledgeFileList(c *gin.Context) {
 	c.JSON(200, resp.Success(trees))
 }
 
-func DeleteKnowledge(c *gin.Context) {
+func DeleteKnowledges(c *gin.Context) {
 	var err error
 	var reqParams *args.DelKnowledge
 	web.BindJSON(c, &reqParams)

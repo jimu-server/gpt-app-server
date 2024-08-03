@@ -302,6 +302,17 @@ func (sdk *OllamaSdk) KnowledgeChat(ctx *gin.Context) {
 
 }
 
+func (sdk *OllamaSdk) CreateKnowledge(ctx *gin.Context) {
+
+}
+
+func (sdk *OllamaSdk) GetKnowledge(ctx *gin.Context) {
+
+}
+func (sdk *OllamaSdk) DeleteKnowledge(ctx *gin.Context) {
+
+}
+
 func (sdk *OllamaSdk) Clone() *OllamaSdk {
 	o := &OllamaSdk{
 		scheme: sdk.scheme,

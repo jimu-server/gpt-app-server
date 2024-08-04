@@ -27,9 +27,6 @@ func main() {
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
 	select {
 	case <-signals:
-		if err := zap.L().Sync(); err != nil {
-			logger.Logger.Error("sync zap log error", zap.Error(err))
-		}
 		if err := server.Close(); err != nil {
 			logger.Logger.Error("close server error", zap.Error(err))
 		}

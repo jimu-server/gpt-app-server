@@ -6,7 +6,6 @@ import (
 	"github.com/jimu-server/gpt-desktop/auth"
 	"github.com/jimu-server/gpt-desktop/db"
 	"github.com/jimu-server/gpt-desktop/gpt/control"
-	"github.com/jimu-server/gpt-desktop/gpt/mapper"
 	"github.com/jimu-server/gpt-desktop/logger"
 	"github.com/jimu-server/gpt-desktop/web"
 	"go.uber.org/zap"
@@ -20,8 +19,6 @@ var mapperFile embed.FS
 var initSQL embed.FS
 
 func init() {
-	db.LocalGoBatis.LoadByRootPath("mapper", mapperFile)
-	db.LocalGoBatis.ScanMappers(mapper.Gpt)
 	initFileDb()
 	chat := web.Engine.Group("/api/chat", auth.GptAuthorization())
 	chat.GET("/plugin", control.PluginList)                                   // 获取插件列表
@@ -55,7 +52,8 @@ func init() {
 func initFileDb() {
 	var err error
 	var file []byte
-	check, _ := mapper.Gpt.InitCheck()
+	check := 0
+	db.DB.Raw("SELECT count(*) FROM sqlite_master WHERE type = 'table'").Scan(&check)
 	if check == 0 {
 		// 初始化db
 		if file, err = initSQL.ReadFile("app_gpt_sqlite.sql"); err != nil {
@@ -79,10 +77,10 @@ func executeSQLScript(dbFile string, script string) error {
 	logger.Info("executeSQLScript success", zap.String("output", string(output)))
 
 	// 初始化 llm 插件
-	db.LocalDB.Exec("insert into app_chat_plugin(id, name, code, icon, model)\nVALUES (1, 'AI 助手', 'default', 'jimu-ChatGPT', 'qwen2:7b')")
-	db.LocalDB.Exec("insert into app_chat_plugin(id, name, code, icon, model, float_view)\nVALUES (2, '编程助手', 'programming', 'jimu-code', 'llama3:latest', 'ProgrammingAssistantPanelView')")
-	db.LocalDB.Exec("insert into app_chat_plugin(id, name, code, icon, model, float_view)\nVALUES (3, '知识库', 'knowledge', 'jimu-zhishi', 'qwen2:7b', 'KnowledgePanelView')")
-	db.LocalDB.Exec("insert into app_setting(id, name, value)\nVALUES (1, 'API', 'ApiSetting')")
+	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model)\nVALUES (1, 'AI 助手', 'default', 'jimu-ChatGPT', 'qwen2:7b')")
+	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model, float_view)\nVALUES (2, '编程助手', 'programming', 'jimu-code', 'llama3:latest', 'ProgrammingAssistantPanelView')")
+	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model, float_view)\nVALUES (3, '知识库', 'knowledge', 'jimu-zhishi', 'qwen2:7b', 'KnowledgePanelView')")
+	db.DB.Exec("insert into app_setting(id, name, value)\nVALUES (1, 'API', 'ApiSetting')")
 
 	return nil
 }

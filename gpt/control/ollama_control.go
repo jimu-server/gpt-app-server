@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jimu-server/common/resp"
 	"github.com/jimu-server/gpt-desktop/auth"
+	"github.com/jimu-server/gpt-desktop/db"
 	"github.com/jimu-server/gpt-desktop/gpt/args"
 	"github.com/jimu-server/gpt-desktop/gpt/control/service"
 
@@ -324,19 +325,9 @@ func CreateKnowledgeFile(c *gin.Context) {
 }
 
 func GetKnowledgeFileList(c *gin.Context) {
-	var err error
-	pid := c.Query("pid")
-	token := c.MustGet(auth.Key).(*auth.Token)
-	params := map[string]any{
-		"Pid":    pid,
-		"UserId": token.Id,
-	}
 	var list []*model.AppChatKnowledgeFile
-	if list, err = GptMapper.KnowledgeFileList(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("查询失败")))
-		return
-	}
-	trees := tree.BuildTree(pid, list)
+	db.DB.Find(&list)
+	trees := tree.BuildTree("", list)
 	c.JSON(200, resp.Success(trees))
 }
 
@@ -352,6 +343,7 @@ func DeleteKnowledges(c *gin.Context) {
 		c.JSON(500, resp.Error(err, resp.Msg("删除失败")))
 		return
 	}
+	db.DB.Delete(&model.AppChatKnowledgeFile{Id: reqParams.Id})
 	c.JSON(200, resp.Success(nil))
 }
 
@@ -417,25 +409,13 @@ func GenKnowledge(c *gin.Context) {
 	// 处理文件数据转化为纯文本
 	for i, file := range arr {
 		var text string
-		/*if text, err = office.DocxToString(file.FileBody); err != nil {
-			err = fmt.Errorf("%s 文件解析失败--> error:%s", file.FileName, err.Error())
-			if err = taskProgress.Progress(1, err.Error(), progress.Error()); err != nil {
-				c.JSON(500, resp.Error(err, resp.Msg("任务失败")))
-				return
-			}
-			return
-		}
-		arr[i].Block = office.WordSplitter(text, 2)*/
-
 		text, err = office.ExtractTextFromPDF(file.FileBody)
 		if err != nil {
 			return
 		}
 		fmt.Println(text)
 		count += len(arr[i].Block)
-
 	}
-
 	// 对文件内容进行向量化存储
 	instanceId := uuid.String()
 	var collection *chromem.Collection
@@ -495,10 +475,7 @@ func GenKnowledge(c *gin.Context) {
 		KnowledgeDescription: reqParams.Description,
 		KnowledgeType:        0,
 	}
-	if err = GptMapper.CreateKnowledge(instance); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("生成失败")))
-		return
-	}
+	db.DB.Create(instance)
 	if err = taskProgress.Progress(100, "知识库生成成功"); err != nil {
 		c.JSON(500, resp.Error(err, resp.Msg("任务失败")))
 		return
@@ -506,15 +483,7 @@ func GenKnowledge(c *gin.Context) {
 }
 
 func GetKnowledgeList(c *gin.Context) {
-	var err error
-	token := c.MustGet(auth.Key).(*auth.Token)
-	params := map[string]any{
-		"UserId": token.Id,
-	}
 	var list []*model.AppChatKnowledgeInstance
-	if list, err = GptMapper.KnowledgeList(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("查询失败")))
-		return
-	}
+	db.DB.Find(&list)
 	c.JSON(200, resp.Success(list))
 }

@@ -10,10 +10,8 @@ require (
 	github.com/jimu-os/gobatis v0.4.1
 	github.com/jimu-server/common v0.0.0-20240413071832-9ed2eceba135
 	github.com/jimu-server/config v0.0.0-20240502064831-0fd28968b1d0
-	github.com/jimu-server/db v0.0.0-20240407153043-c094cb1e9dd0
 	github.com/jimu-server/gpt v0.0.0-20240622021558-9fe85c95ab01
 	github.com/jimu-server/logger v0.0.0-20240502080521-e89a98dd9368
-	github.com/jimu-server/middleware v0.0.0-20240414052709-4f8376e5f1b8
 	github.com/jimu-server/model v0.0.0-20240502160506-a1963c997c43
 	github.com/jimu-server/office v0.0.0-20240508064732-beef454e12f2
 	github.com/jimu-server/util v0.0.0-20240413024817-09368e13a626
@@ -23,9 +21,9 @@ require (
 	github.com/ollama/ollama v0.1.34
 	github.com/philippgille/chromem-go v0.6.0
 	go.uber.org/zap v1.27.0
-	google.golang.org/grpc v1.62.1
-	google.golang.org/protobuf v1.34.1
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
+	gorm.io/driver/sqlite v1.5.6
+	gorm.io/gorm v1.25.11
 )
 
 require (
@@ -44,12 +42,13 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.20.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/golang/protobuf v1.5.4 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.7 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
-	github.com/lib/pq v1.10.9 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
@@ -73,7 +72,7 @@ require (
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240311173647-c811ad7063a7 // indirect
+	google.golang.org/protobuf v1.34.1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

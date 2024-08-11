@@ -1,110 +1,59 @@
 package control
 
 import (
-	"database/sql"
 	"github.com/gin-gonic/gin"
 	"github.com/jimu-server/common/resp"
-	"github.com/jimu-server/gpt-desktop/auth"
 	"github.com/jimu-server/gpt-desktop/db"
 	"github.com/jimu-server/gpt-desktop/gpt/args"
+	"github.com/jimu-server/gpt-desktop/model"
 	"github.com/jimu-server/gpt-desktop/web"
-	"github.com/jimu-server/model"
 	"github.com/jimu-server/util/uuidutils/uuid"
 	"time"
 )
 
 func CreateConversation(c *gin.Context) {
-	var err error
 	var reqParams args.CreateConversationArgs
-	token := c.MustGet(auth.Key).(*auth.Token)
 	web.BindJSON(c, &reqParams)
-	params := map[string]interface{}{
-		"Id":     uuid.String(),
-		"UserId": token.Id,
-		"Title":  reqParams.Title,
+	conversationItem := model.AppChatConversationItem{
+		Id:    uuid.String(),
+		Title: reqParams.Title,
 	}
-	if err = GptMapper.CreateConversation(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("创建失败")))
-		return
-	}
-	c.JSON(200, resp.Success(params["Id"], resp.Msg("创建成功")))
+	db.DB.Create(&conversationItem)
+	c.JSON(200, resp.Success(conversationItem.Id, resp.Msg("创建成功")))
 }
 
 func DelConversation(c *gin.Context) {
-	var err error
 	var reqParams map[string]string
-	var begin *sql.Tx
 	web.BindJSON(c, &reqParams)
-	token := c.MustGet(auth.Key).(*auth.Token)
-	reqParams["UserId"] = token.Id
-	if begin, err = db.LocalDB.Begin(); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("开启事务失败")))
-		return
-	}
-	if err = GptMapper.DelConversation(reqParams, begin); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("创建失败")))
-		return
-	}
-	if err = GptMapper.DeleteConversationMessage(reqParams, begin); err != nil {
-		begin.Rollback()
-		c.JSON(500, resp.Error(err, resp.Msg("创建失败")))
-		return
-	}
+	begin := db.DB.Begin()
+	begin.Delete(&model.AppChatConversationItem{Id: reqParams["Id"]})
+	begin.Model(&model.AppChatMessage{}).Where("conversation_id =?", reqParams["Id"]).Update("is_delete", 1)
 	begin.Commit()
 	c.JSON(200, resp.Success(nil, resp.Msg("创建成功")))
 }
 
 func DelConversationMessage(c *gin.Context) {
-	var err error
 	var reqParams map[string]string
-	var begin *sql.Tx
 	web.BindJSON(c, &reqParams)
-	token := c.MustGet(auth.Key).(*auth.Token)
-	reqParams["UserId"] = token.Id
-	if begin, err = db.LocalDB.Begin(); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("开启事务失败")))
-		return
-	}
-	if err = GptMapper.DeleteConversationMessage(reqParams, begin); err != nil {
-		begin.Rollback()
-		c.JSON(500, resp.Error(err, resp.Msg("创建失败")))
-		return
-	}
-	begin.Commit()
+	db.DB.Where("conversation_id =?", reqParams["Id"]).Update("is_delete", 1)
 	c.JSON(200, resp.Success(nil, resp.Msg("创建成功")))
 }
 
 func GetConversation(c *gin.Context) {
-	var err error
-	token := c.MustGet(auth.Key).(*auth.Token)
 	var list []model.AppChatConversationItem
-	params := map[string]interface{}{
-		"UserId": token.Id,
-	}
-	if list, err = GptMapper.ConversationList(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("查询失败")))
-		return
-	}
+	db.DB.Find(&list)
 	c.JSON(200, resp.Success(list, resp.Msg("查询成功")))
 }
 
 func GetConversationHistory(c *gin.Context) {
 	var err error
-	token := c.MustGet(auth.Key).(*auth.Token)
 	var list []model.AppChatMessage
 	var conversationId string
 	if conversationId = c.Query("conversationId"); conversationId == "" {
 		c.JSON(500, resp.Error(err, resp.Msg("会话id不能为空")))
 		return
 	}
-	params := map[string]interface{}{
-		"UserId":         token.Id,
-		"ConversationId": conversationId,
-	}
-	if list, err = GptMapper.ConversationHistory(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("查询失败")))
-		return
-	}
+	db.DB.Where("conversation_id =? and is_delete=0", conversationId).Order("create_time ASC").Find(&list)
 	c.JSON(200, resp.Success(list, resp.Msg("查询成功")))
 }
 
@@ -120,75 +69,41 @@ func UpdateConversation(c *gin.Context) {
 }
 
 func Send(c *gin.Context) {
-	var err error
 	var reqParams args.SendMessageArgs
-	token := c.MustGet(auth.Key).(*auth.Token)
 	web.BindJSON(c, &reqParams)
-	var begin *sql.Tx
-	if begin, err = db.LocalDB.Begin(); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("开启事务失败")))
-		return
-	}
-	id := uuid.String()
-	if reqParams.MessageId == "" {
-		reqParams.MessageId = id
-	}
+	begin := db.DB.Begin()
 	data := model.AppChatMessage{
-		Id:             id,
+		Id:             uuid.String(),
 		ConversationId: reqParams.ConversationId,
 		MessageId:      reqParams.MessageId,
-		UserId:         token.Id,
 		ModelId:        reqParams.ModelId,
 		Picture:        reqParams.Avatar,
 		Role:           "user",
 		Content:        reqParams.Content,
 		CreateTime:     time.Now().Format("2006-01-02 15:04:05"),
 	}
-	if err = GptMapper.CreateMessage(data, begin); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("发送失败")))
-		return
-	}
+	begin.Create(data)
 	begin.Commit()
 	c.JSON(200, resp.Success(data, resp.Msg("发送成功")))
 }
 
 func GetMessageItem(c *gin.Context) {
-	var err error
 	id := c.Query("id")
-	params := map[string]interface{}{
-		"Id": id,
-	}
 	var data *model.AppChatMessage
-	if data, err = GptMapper.SelectMessageItem(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("查询失败")))
-		return
-	}
+	db.DB.Where("id =?", id).First(&data)
 	c.JSON(200, resp.Success(data, resp.Msg("查询成功")))
 }
 
 func DeleteMessage(c *gin.Context) {
-	var err error
 	var reqParams args.DeleteChatMsg
-	token := c.MustGet(auth.Key).(*auth.Token)
 	web.BindJSON(c, &reqParams)
-	params := map[string]interface{}{
-		"list":   reqParams.Ids,
-		"UserId": token.Id,
-	}
-	if err = GptMapper.DeleteMessage(params); err != nil {
-		c.JSON(500, resp.Error(err, resp.Msg("删除失败")))
-		return
-	}
+	var data *model.AppChatMessage
+	db.DB.Model(data).Where("id in ?", reqParams.Ids).Update("is_delete", 1)
 	c.JSON(200, resp.Success(nil, resp.Msg("删除成功")))
 }
 
 func PluginList(c *gin.Context) {
-	var err error
 	var list []*model.AppChatPlugin
-	if list, err = GptMapper.GetGptPlugin(); err != nil {
-		logs.Error(err.Error())
-		c.JSON(500, resp.Error(err, resp.Msg("获取失败")))
-		return
-	}
+	db.DB.Where("status =?", 1).Find(&list)
 	c.JSON(200, resp.Success(list, resp.Msg("获取成功")))
 }

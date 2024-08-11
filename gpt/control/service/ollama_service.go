@@ -2,16 +2,15 @@ package service
 
 import (
 	"bytes"
-	"database/sql"
 	"github.com/gin-gonic/gin"
 	"github.com/jimu-server/common/resp"
 	"github.com/jimu-server/gpt-desktop/auth"
 	"github.com/jimu-server/gpt-desktop/db"
 	"github.com/jimu-server/gpt-desktop/gpt/args"
 	"github.com/jimu-server/gpt-desktop/gpt/mapper"
-	"github.com/jimu-server/gpt/llm-sdk"
+	"github.com/jimu-server/gpt-desktop/model"
+	llm_sdk "github.com/jimu-server/gpt/llm-sdk"
 	"github.com/jimu-server/logger"
-	"github.com/jimu-server/model"
 	"github.com/ollama/ollama/api"
 	"net/http"
 	"time"
@@ -20,61 +19,43 @@ import (
 var logs = logger.Logger
 var GptMapper = mapper.Gpt
 
-func ChatUpdate(token *auth.Token, args args.ChatArgs, content string) error {
-	var begin *sql.Tx
+func ChatUpdate(args args.ChatArgs, content string) error {
 	var err error
-	if begin, err = db.LocalDB.Begin(); err != nil {
-		return err
-	}
+	begin := db.DB.Begin()
 	// 消息入库
-	picture := ""
-	if picture, err = GptMapper.GetModelAvatar(map[string]any{"Id": args.ModelId}); err != nil {
-		logs.Error(err.Error())
-		return err
-	}
 	format := time.Now().Format("2006-01-02 15:04:05")
 	data := model.AppChatMessage{
 		Id:             args.Id,
 		ConversationId: args.ConversationId,
 		MessageId:      args.MessageId,
-		UserId:         token.Id,
 		ModelId:        args.ModelId,
-		Picture:        picture,
 		Role:           "assistant",
 		Content:        content,
 		CreateTime:     format,
 	}
-	if err = GptMapper.CreateMessage(data, begin); err != nil {
-		logs.Error(err.Error())
+	if err = begin.Create(&data).Error; err != nil {
 		return err
 	}
 	// 更新会话
 	update := model.AppChatConversationItem{
-		Id:         args.ConversationId,
-		Picture:    picture,
-		UserId:     "",
-		Title:      "",
-		LastModel:  args.Model,
-		LastMsg:    content,
-		LastTime:   format,
-		CreateTime: "",
+		Id:        args.ConversationId,
+		LastModel: args.Model,
+		LastMsg:   content,
+		LastTime:  format,
 	}
-	if err = GptMapper.UpdateConversationLastMsg(update, begin); err != nil {
+	if err = begin.Updates(&update).Error; err != nil {
 		logs.Error(err.Error())
-		if err = begin.Rollback(); err != nil {
-			logs.Error(err.Error())
-			return err
-		}
+		begin.Rollback()
 		return err
 	}
-	return begin.Commit()
+	begin.Commit()
+	return nil
 }
 
 // SendChatStreamMessage 聊天流消息
 func SendChatStreamMessage(c *gin.Context, params args.ChatArgs) {
 	var err error
 	var send <-chan llm_sdk.LLMStream[api.ChatResponse]
-	token := c.MustGet(auth.Key).(*auth.Token)
 	if send, err = llm_sdk.Chat[api.ChatResponse](params.ChatRequest); err != nil {
 		c.JSON(500, resp.Error(err, resp.Msg("消息回复失败")))
 		return
@@ -108,7 +89,7 @@ func SendChatStreamMessage(c *gin.Context, params args.ChatArgs) {
 		content.WriteString(msg)
 	}
 	contentStr := content.String()
-	if err = ChatUpdate(token, params, contentStr); err != nil {
+	if err = ChatUpdate(params, contentStr); err != nil {
 		c.JSON(500, resp.Error(err, resp.Msg("消息回复失败")))
 		return
 	}
@@ -152,7 +133,7 @@ func SendKnowledgeChatStreamMessage(c *gin.Context, params args.KnowledgeChatArg
 		content.WriteString(msg)
 	}
 	contentStr := content.String()
-	if err = ChatUpdate(token, params.ChatArgs, contentStr); err != nil {
+	if err = ChatUpdate(params.ChatArgs, contentStr); err != nil {
 		c.JSON(500, resp.Error(err, resp.Msg("消息回复失败")))
 		return
 	}

@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-func ChatUpdate(args dto.ChatArgs, content string) error {
+func ChatUpdate(args *dto.ChatArgs, content string) error {
 	var err error
 	begin := db.DB.Begin()
 	// 消息入库
@@ -50,7 +50,7 @@ func ChatUpdate(args dto.ChatArgs, content string) error {
 }
 
 // SendChatStreamMessage 聊天流消息
-func SendChatStreamMessage(c *gin.Context, params dto.ChatArgs) {
+func SendChatStreamMessage(c *gin.Context, params *dto.ChatArgs) {
 	var err error
 	var send <-chan llm_sdk.LLMStream[api.ChatResponse]
 	if send, err = llm_sdk.Chat[api.ChatResponse](params.ChatRequest); err != nil {

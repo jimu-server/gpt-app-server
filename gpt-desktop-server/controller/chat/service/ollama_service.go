@@ -6,8 +6,9 @@ import (
 	"common/resp"
 	"github.com/gin-gonic/gin"
 	"github.com/ollama/ollama/api"
+	"gpt-desktop/controller/chat/dto"
 	"gpt-desktop/db"
-	"gpt-desktop/gpt/args"
+
 	llm_sdk "gpt-desktop/gpt/llm-sdk"
 	"gpt-desktop/logs"
 	"gpt-desktop/model"
@@ -15,7 +16,7 @@ import (
 	"time"
 )
 
-func ChatUpdate(args args.ChatArgs, content string) error {
+func ChatUpdate(args dto.ChatArgs, content string) error {
 	var err error
 	begin := db.DB.Begin()
 	// 消息入库
@@ -49,7 +50,7 @@ func ChatUpdate(args args.ChatArgs, content string) error {
 }
 
 // SendChatStreamMessage 聊天流消息
-func SendChatStreamMessage(c *gin.Context, params args.ChatArgs) {
+func SendChatStreamMessage(c *gin.Context, params dto.ChatArgs) {
 	var err error
 	var send <-chan llm_sdk.LLMStream[api.ChatResponse]
 	if send, err = llm_sdk.Chat[api.ChatResponse](params.ChatRequest); err != nil {
@@ -91,10 +92,10 @@ func SendChatStreamMessage(c *gin.Context, params args.ChatArgs) {
 	}
 }
 
-func SendKnowledgeChatStreamMessage(c *gin.Context, params args.KnowledgeChatArgs) {
+func SendKnowledgeChatStreamMessage(c *gin.Context, params dto.KnowledgeChatArgs) {
 
 }
 
-func IndexKnowledge(token *auth.Token, param args.KnowledgeChatArgs) {
+func IndexKnowledge(token *auth.Token, param dto.KnowledgeChatArgs) {
 
 }

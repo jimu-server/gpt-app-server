@@ -1,4 +1,4 @@
-package ali
+package llm_sdk
 
 import "github.com/gin-gonic/gin"
 

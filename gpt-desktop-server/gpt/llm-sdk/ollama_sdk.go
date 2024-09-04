@@ -1,4 +1,4 @@
-package ollama
+package llm_sdk
 
 import (
 	"bufio"
@@ -9,7 +9,6 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/ollama/ollama/api"
 	"github.com/ollama/ollama/format"
-	llm_sdk "gpt-desktop/gpt/llm-sdk"
 	"io"
 	"net"
 	"net/http"
@@ -62,7 +61,7 @@ func (s *ollamaStream[T]) Data() T {
 	return s.entity
 }
 
-type DataEvent[T any] <-chan llm_sdk.LLMStream[T]
+type DataEvent[T any] <-chan LLMStream[T]
 
 // Chat
 // 模型对话聊天
@@ -211,7 +210,7 @@ func CreateModel[T any](req *api.CreateRequest) (DataEvent[T], error) {
 }
 
 func stream[T any](response *http.Response) (DataEvent[T], error) {
-	send := make(chan llm_sdk.LLMStream[T], 100)
+	send := make(chan LLMStream[T], 100)
 	go func() {
 		var err error
 		var buf []byte

@@ -6,10 +6,10 @@ import (
 	"github.com/jimu-server/common/resp"
 	"github.com/jimu-server/util/uuidutils/uuid"
 	"gpt-desktop/controller/chat/dto"
+	"gpt-desktop/controller/chat/service"
 	"gpt-desktop/db"
 
 	"gpt-desktop/model"
-	"gpt-desktop/service"
 	"time"
 )
 

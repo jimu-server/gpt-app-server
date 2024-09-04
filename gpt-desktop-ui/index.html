@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" id="html">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/27211694_c193098.jpg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI 智能助手</title>
+    <script>
+        function copyToClipboard(button) {
+            const codeBlock = button.nextElementSibling;
+            const textArea = document.createElement('textarea');
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            // Optional: Change button text to indicate success
+            button.textContent = '已复制!';
+            setTimeout(() => {
+                button.textContent = '复制';
+            }, 2000);
+        }
+    </script>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

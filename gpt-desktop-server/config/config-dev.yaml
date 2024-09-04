@@ -1,0 +1,16 @@
+server-name: im
+host: localhost
+port: 8080
+database: file:gpt.db?charset=utf8
+logger:
+  level: debug
+  filename: system
+  path:
+  maxsize: 10
+  maxage: 30
+  maxbackups: 30
+Auth:
+  #  jwt 安全码
+  AccessSecret: asdasceqw
+  #  jwt 过期时间
+  AccessExpire: 3600

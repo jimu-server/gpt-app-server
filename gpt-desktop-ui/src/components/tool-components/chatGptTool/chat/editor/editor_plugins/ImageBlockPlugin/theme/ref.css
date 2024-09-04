@@ -1,0 +1,20 @@
+.image-block-card {
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+    display: inline-block;
+    outline: 1px solid rgba(37, 32, 32, 0.08) !important;
+    border-radius: 5px;
+    user-select: none;
+}
+
+.image-block-card:hover {
+    background-color: rgba(37, 32, 32, 0.01);
+    cursor: move;
+}
+
+.image-block-card:hover {
+    outline-color: rgba(37, 32, 32, 0.21) !important;
+}
+
+

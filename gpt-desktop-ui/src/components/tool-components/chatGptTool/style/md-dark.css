@@ -1,0 +1,119 @@
+
+.markdown-message h1 {
+    font-size: var(--md-msg-title1);
+    font-weight: var(--md-msg-font-bold);
+    align-content: center;
+}
+
+.markdown-message h2 {
+    font-size: var(--md-msg-title2);
+    font-weight: var(--md-msg-font-bold);
+    align-content: center;
+    letter-spacing: -.02em;
+    line-height: 40px;
+}
+
+.markdown-message h3 {
+    font-size: var(--md-msg-title3);
+    font-weight: var(--md-msg-font-bold);
+    align-content: center;
+}
+
+.markdown-message h4 {
+    font-size: var(--md-msg-title4);
+    align-content: center;
+}
+
+
+.markdown-message p {
+    margin: 0;
+}
+
+
+.markdown-message ul {
+    display: block;
+    list-style-type: disc;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 30px;
+}
+
+
+.markdown-message ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 30px;
+}
+
+.markdown-message ol li {
+    /*list-style-position: outside;*/
+}
+
+
+.markdown-message a {
+    font-weight: 500;
+    color: var(--md-msg-a);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color .25s, opacity .25s;
+}
+
+
+.markdown-message :not(pre) > code[theme="dark"] {
+    border-radius: 4px;
+    padding: 3px 6px;
+    background-color: var(--md-msg-inline-code-bg-dark);
+    transition: color .25s, background-color .5s;
+    color: #ffffff;
+}
+
+.markdown-message > pre[theme="dark"] {
+    padding: 5px;
+    border-radius: 4px;
+    background-color: var(--md-msg-block-code-bg-dark);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #ffffff;
+    overflow: auto;
+}
+
+.markdown-message.gpt-message[theme="dark"] {
+    max-width: 100%;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.87);
+    color: #ffffff;
+}
+
+.gpt-fold[theme="dark"] {
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+    top: -3rem;
+    background-image: linear-gradient(0deg, rgba(31, 31, 31, 0.74) 0, #1f1f1f 30%, rgb(47 45 45 / 78%) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+.code-copy-button[theme="dark"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgba(158, 160, 161, 0.54);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.code-copy-button[theme="dark"]:hover {
+    background-color: rgba(158, 160, 161, 0.82);
+}

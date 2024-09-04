@@ -1,0 +1,13 @@
+@forward "element-plus/theme-chalk/src/dark/var.scss" with (
+  $colors:(
+           //这里定义在暗黑模式下 primary 的颜色，其他同理
+        "primary": ("base": #409EFF),
+        "success": ("base": #67C23A),
+        "warning": ("base": #E6A23C),
+        "danger": ("base": #F56C6C),
+        "error": ("base": #f56c6c),
+        "info": ("base": #909399),
+  )
+);
+
+@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;

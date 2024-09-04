@@ -1,0 +1,191 @@
+
+:root {
+
+    --md-msg-gpt-bg: rgb(234, 234, 234);
+    --md-msg-user-bg: var(--q-primary);
+
+    --md-msg-title1: 25px;
+    --md-msg-title2: 24px;
+    --md-msg-title3: 15px;
+    --md-msg-title4: 10px;
+
+    --md-msg-font-bold: bold;
+    --md-msg-font-normal: 50px;
+
+    --md-msg-a: #3451b2;
+    --md-msg-inline-code-bg: rgb(132, 187, 154);
+    --md-msg-inline-code-bg-dark: rgba(132, 187, 154, 0.9);
+
+    --md-msg-block-code-bg: rgb(255, 255, 255);
+    --md-msg-block-code-bg-dark: #000000;
+
+}
+
+.markdown-message h1 {
+    font-size: var(--md-msg-title1);
+    font-weight: var(--md-msg-font-bold);
+    align-content: center;
+}
+
+.markdown-message h2 {
+    font-size: var(--md-msg-title2);
+    font-weight: var(--md-msg-font-bold);
+    align-content: center;
+    letter-spacing: -.02em;
+    line-height: 40px;
+}
+
+.markdown-message h3 {
+    font-size: var(--md-msg-title3);
+    font-weight: var(--md-msg-font-bold);
+    align-content: center;
+}
+
+.markdown-message h4 {
+    font-size: var(--md-msg-title4);
+    align-content: center;
+}
+
+
+.markdown-message p {
+    margin: 0;
+    line-height: 30px;
+}
+
+
+.markdown-message ul {
+    display: block;
+    list-style-type: disc;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 30px;
+}
+
+
+.markdown-message ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 30px;
+}
+
+.markdown-message ol li {
+    /*list-style-position: outside;*/
+    margin-bottom: 5px;
+}
+
+.markdown-message ul li {
+    /*list-style-position: outside;*/
+    margin-bottom: 5px;
+}
+
+
+
+.markdown-message a {
+    font-weight: 500;
+    color: var(--md-msg-a);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color .25s, opacity .25s;
+}
+
+
+.markdown-message :not(pre) > code {
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    align-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: var(--md-msg-inline-code-bg);
+    transition: color .25s, background-color .5s;
+    color: rgb(43, 46, 42);
+}
+
+.markdown-message > pre {
+    padding: 5px;
+    border-radius: 4px;
+    background-color: var(--md-msg-block-code-bg);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #000000;
+    overflow: auto;
+}
+
+
+
+.markdown-message .token.parameter.variable {
+    background: transparent;
+}
+
+.markdown-message .token.operator {
+    background: transparent;
+}
+
+.markdown-message .token.dom.variable {
+    background: transparent;
+}
+
+.text-message.user-message {
+    max-width: 100%;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--md-msg-user-bg);
+    color: #ffffff;
+}
+
+.markdown-message.gpt-message {
+    max-width: 100%;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--md-msg-gpt-bg);
+    color: black;
+}
+
+.gpt-fold {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    top: -3rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: color .25s, background-color .5s;
+    background-image: linear-gradient(0deg, #fafafa 0, #fff 30%, rgba(255, 255, 255, .8) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+
+.markdown-code-block{
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 16px;
+    overflow: auto;
+}
+
+
+.code-copy-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: #409EFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #1e8bfe;
+}

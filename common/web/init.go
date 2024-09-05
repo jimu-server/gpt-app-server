@@ -1,8 +1,8 @@
 package web
 
 import (
-	"api/logs"
 	"github.com/gin-gonic/gin"
+	"gpt-desktop/logs"
 	"net/http"
 )
 

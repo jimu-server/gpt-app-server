@@ -1,9 +1,9 @@
 package web
 
 import (
-	"api/logs"
 	"common/resp"
 	"github.com/gin-gonic/gin"
+	"gpt-desktop/logs"
 	"runtime/debug"
 	"strings"
 )

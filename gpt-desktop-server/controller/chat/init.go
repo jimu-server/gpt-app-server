@@ -16,6 +16,6 @@ func init() {
 	chat.GET("/msg", GetMessageItem)                                  // 查询指定消息
 	chat.POST("/msg/delete", DeleteMessage)                           // 删除消息
 	// 聊天操作
-	chat.POST("/conversation", ChatStream)                    // 默认聊天问答
+	chat.POST("/conversation", DefaultChatStream)             // 默认聊天问答
 	chat.POST("/conversation/knowledge", KnowledgeChatStream) // 知识库聊天问答
 }

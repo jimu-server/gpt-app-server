@@ -6,7 +6,6 @@ toolchain go1.22.1
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/jimu-server/common v0.0.0-20240413071832-9ed2eceba135
 	github.com/jimu-server/logger v0.0.0-20240801070816-264887c6fff2
 	github.com/jimu-server/model v0.0.0-20240801070816-9743f47b666d
 	github.com/jimu-server/util v0.0.0-20240608100621-d5a391dd29f6
@@ -14,6 +13,8 @@ require (
 	github.com/ollama/ollama v0.1.34
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.19.0
+	github.com/swaggo/files v1.0.1
+	github.com/swaggo/gin-swagger v1.6.0
 	github.com/swaggo/swag v1.16.3
 	go.uber.org/zap v1.27.0
 	gorm.io/driver/mysql v1.5.7

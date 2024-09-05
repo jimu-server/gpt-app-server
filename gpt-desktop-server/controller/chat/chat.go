@@ -1,14 +1,15 @@
 package chat
 
 import (
+	"common/resp"
+	"common/util/uuidutils/uuid"
 	"common/web"
 	"github.com/gin-gonic/gin"
-	"github.com/jimu-server/common/resp"
-	"github.com/jimu-server/util/uuidutils/uuid"
+	"go.uber.org/zap"
 	"gpt-desktop/controller/chat/dto"
 	"gpt-desktop/controller/chat/service"
 	"gpt-desktop/db"
-
+	"gpt-desktop/logs"
 	"gpt-desktop/model"
 	"time"
 )
@@ -20,7 +21,7 @@ func CreateConversation(c *gin.Context) {
 		Title: reqParams.Title,
 	}
 	db.DB.Create(&conversationItem)
-	c.JSON(200, resp.Success(conversationItem.Id, resp.Msg("创建成功")))
+	resp.SUCCESS(c, conversationItem)
 }
 
 func DelConversation(c *gin.Context) {
@@ -29,36 +30,56 @@ func DelConversation(c *gin.Context) {
 	begin.Delete(&model.AppChatConversationItem{Id: reqParams["Id"]})
 	begin.Model(&model.AppChatMessage{}).Where("conversation_id =?", reqParams["Id"]).Update("is_delete", 1)
 	begin.Commit()
-	c.JSON(200, resp.Success(nil, resp.Msg("创建成功")))
+	resp.SUCCESS(c, nil)
 }
 
 func DelConversationMessage(c *gin.Context) {
 	reqParams := web.BindJSON[map[string]string](c)
 	db.DB.Where("conversation_id =?", reqParams["Id"]).Update("is_delete", 1)
-	c.JSON(200, resp.Success(nil, resp.Msg("创建成功")))
+	resp.SUCCESS(c, nil)
 }
 
 func GetConversation(c *gin.Context) {
 	var list []model.AppChatConversationItem
 	db.DB.Find(&list)
-	c.JSON(200, resp.Success(list, resp.Msg("查询成功")))
+	resp.SUCCESS(c, list)
 }
 
+// GetConversationHistory
+// @Summary      发送消息
+// @Description  用户对话，发送问题消息
+// @Tags         聊天
+// @Accept       json
+// @Param        conversationId query string  true "消息参数"
+// @Produce      json
+// @Success      200  {object}  resp.Response{code=int,data=any,msg=string}
+// @Failure      500  {object}  resp.Response{code=int,data=any,msg=string}
+// @Router       /api/chat/conversation/message [get]
 func GetConversationHistory(c *gin.Context) {
 	var err error
 	var list []model.AppChatMessage
 	var conversationId string
 	if conversationId = c.Query("conversationId"); conversationId == "" {
-		c.JSON(500, resp.Error(err, resp.Msg("会话id不能为空")))
+		logs.Log.Error("会话id不能为空", zap.Error(err))
+		resp.Error(err)
 		return
 	}
 	db.DB.Where("conversation_id =? and is_delete=0", conversationId).Order("create_time ASC").Find(&list)
-	c.JSON(200, resp.Success(list, resp.Msg("查询成功")))
+	resp.SUCCESS(c, list)
 }
 
+// Send
+// @Summary      发送消息
+// @Description  用户对话，发送问题消息
+// @Tags         聊天
+// @Accept       json
+// @Param        args body  dto.SendMessageArgs true "消息参数"
+// @Produce      json
+// @Success      200  {object}  resp.Response{code=int,data=any,msg=string}
+// @Failure      500  {object}  resp.Response{code=int,data=any,msg=string}
+// @Router       /api/chat/send [post]
 func Send(c *gin.Context) {
 	reqParams := web.BindJSON[*dto.SendMessageArgs](c)
-	begin := db.DB.Begin()
 	data := model.AppChatMessage{
 		Id:             uuid.String(),
 		ConversationId: reqParams.ConversationId,
@@ -69,32 +90,70 @@ func Send(c *gin.Context) {
 		Content:        reqParams.Content,
 		CreateTime:     time.Now().Format("2006-01-02 15:04:05"),
 	}
-	begin.Create(data)
-	begin.Commit()
-	c.JSON(200, resp.Success(data, resp.Msg("发送成功")))
+	db.DB.Create(data)
+	resp.SUCCESS(c, data)
 }
 
+// GetMessageItem
+// @Summary      获取指定消息
+// @Description  根据消息id获取指定消息
+// @Tags         聊天
+// @Accept       json
+// @Param        id query  string true "消息参数"
+// @Produce      json
+// @Success      200  {object}  resp.Response{code=int,data=any,msg=string}
+// @Failure      500  {object}  resp.Response{code=int,data=any,msg=string}
+// @Router       /api/chat/msg [get]
 func GetMessageItem(c *gin.Context) {
 	id := c.Query("id")
 	var data *model.AppChatMessage
 	db.DB.Where("id =?", id).First(&data)
-	c.JSON(200, resp.Success(data, resp.Msg("查询成功")))
+	resp.SUCCESS(c, data)
 }
 
+// DeleteMessage
+// @Summary      删除消息
+// @Description  删除指定消息记录
+// @Tags         聊天
+// @Accept       json
+// @Param        args body  dto.DeleteChatMsg true "消息参数"
+// @Produce      json
+// @Success      200  {object}  resp.Response{code=int,data=any,msg=string}
+// @Failure      500  {object}  resp.Response{code=int,data=any,msg=string}
+// @Router       /api/chat/msg/delete [post]
 func DeleteMessage(c *gin.Context) {
 	reqParams := web.BindJSON[*dto.DeleteChatMsg](c)
 	var data *model.AppChatMessage
 	db.DB.Model(data).Where("id in ?", reqParams.Ids).Update("is_delete", 1)
-	c.JSON(200, resp.Success(nil, resp.Msg("删除成功")))
+	resp.SUCCESS(c, nil)
 }
 
+// PluginList
+// @Summary      获取插件列表
+// @Description  获取全部插件列表信息
+// @Tags         插件
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  resp.Response{code=int,data=any,msg=string}
+// @Failure      500  {object}  resp.Response{code=int,data=any,msg=string}
+// @Router       /api/chat/plugin [get]
 func PluginList(c *gin.Context) {
 	var list []*model.AppChatPlugin
 	db.DB.Where("status =?", 1).Find(&list)
-	c.JSON(200, resp.Success(list, resp.Msg("获取成功")))
+	resp.SUCCESS(c, list)
 }
 
-func ChatStream(c *gin.Context) {
+// DefaultChatStream
+// @Summary      发送消息
+// @Description  用户发送普通问答消息
+// @Tags         聊天
+// @Accept       json
+// @Param        args body  dto.ChatArgs true "消息参数"
+// @Produce      json
+// @Success      200  {object}  resp.Response{code=int,data=any,msg=string}
+// @Failure      500  {object}  resp.Response{code=int,data=any,msg=string}
+// @Router       /api/chat/conversation [post]
+func DefaultChatStream(c *gin.Context) {
 	params := web.BindJSON[*dto.ChatArgs](c)
 	service.SendChatStreamMessage(c, params)
 }

@@ -4,27 +4,35 @@ import (
 	"common/web"
 	"embed"
 	"fmt"
-	"github.com/jimu-server/logger"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 	"gpt-desktop/config"
+
 	"gpt-desktop/db"
 	"gpt-desktop/docs"
-	_ "gpt-desktop/gpt"
 	"gpt-desktop/logs"
 	"net/http"
 	"os"
 	"os/exec"
 	"os/signal"
 	"syscall"
+
+	_ "gpt-desktop/controller/chat"
+	_ "gpt-desktop/controller/pub"
 )
 
 func init() {
-	docs.SwaggerInfo.Title = "web-kit"
-	docs.SwaggerInfo.Description = "api 文档"
+	docs.SwaggerInfo.Title = "gpt"
+	docs.SwaggerInfo.Description = "gpt-api 文档"
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.Host = "localhost:8080"
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
+
+	// https://github.com/swaggo/swag
+	// 初始化文档使用 swag init -g main.go -pd
+	web.Engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
 
 //go:embed app_gpt_sqlite.sql
@@ -65,13 +73,13 @@ func initFileDb() {
 	if check == 0 {
 		// 初始化db
 		if file, err = initSQL.ReadFile("app_gpt_sqlite.sql"); err != nil {
-			logger.Logger.Panic("failed to initialize database", zap.Error(err))
+			logs.Log.Panic("failed to initialize database", zap.Error(err))
 		}
 		err = executeSQLScript("gpt.db", string(file))
 		if err != nil {
-			logger.Logger.Panic("failed to initialize database", zap.Error(err))
+			logs.Log.Panic("failed to initialize database", zap.Error(err))
 		}
-		logger.Info("init gpt.db success")
+		logs.Log.Info("init gpt.db success")
 	}
 }
 
@@ -82,7 +90,7 @@ func executeSQLScript(dbFile string, script string) error {
 	if err != nil {
 		return fmt.Errorf("failed to execute SQL script: %s, output: %s", err, output)
 	}
-	logger.Info("executeSQLScript success", zap.String("output", string(output)))
+	logs.Log.Info("executeSQLScript success", zap.String("output", string(output)))
 
 	// 初始化 llm 插件
 	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model)\nVALUES (1, 'AI 助手', 'default', 'jimu-ChatGPT', 'qwen2:7b')")

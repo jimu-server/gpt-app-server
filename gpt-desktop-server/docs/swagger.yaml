@@ -1,4 +1,363 @@
+definitions:
+  dto.ChatArgs:
+    type: object
+  dto.ChatMode:
+    properties:
+      knowledge:
+        description: 知识库聊天
+        items:
+          type: string
+        type: array
+    type: object
+  dto.DeleteChatMsg:
+    properties:
+      ids:
+        items:
+          type: string
+        type: array
+    type: object
+  dto.LoginDTO:
+    properties:
+      password:
+        description: 密码
+        example: "123456"
+        type: string
+      username:
+        description: 用户名
+        example: root
+        type: string
+    type: object
+  dto.SendMessageArgs:
+    properties:
+      avatar:
+        type: string
+      content:
+        type: string
+      conversationId:
+        type: string
+      messageId:
+        type: string
+      modelId:
+        type: string
+    required:
+    - avatar
+    - content
+    - conversationId
+    - modelId
+    type: object
+  resp.Response:
+    properties:
+      code:
+        description: 业务状态码
+        example: 200
+        type: integer
+      data:
+        description: 响应数据
+      msg:
+        description: 附加消息
+        example: success
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /api/chat/conversation:
+    post:
+      consumes:
+      - application/json
+      description: 用户发送普通问答消息
+      parameters:
+      - description: 消息参数
+        in: body
+        name: args
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ChatArgs'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 发送消息
+      tags:
+      - 聊天
+  /api/chat/conversation/message:
+    get:
+      consumes:
+      - application/json
+      description: 用户对话，发送问题消息
+      parameters:
+      - description: 消息参数
+        in: query
+        name: conversationId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 发送消息
+      tags:
+      - 聊天
+  /api/chat/msg:
+    get:
+      consumes:
+      - application/json
+      description: 根据消息id获取指定消息
+      parameters:
+      - description: 消息参数
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 获取指定消息
+      tags:
+      - 聊天
+  /api/chat/msg/delete:
+    post:
+      consumes:
+      - application/json
+      description: 删除指定消息记录
+      parameters:
+      - description: 消息参数
+        in: body
+        name: args
+        required: true
+        schema:
+          $ref: '#/definitions/dto.DeleteChatMsg'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 删除消息
+      tags:
+      - 聊天
+  /api/chat/plugin:
+    get:
+      consumes:
+      - application/json
+      description: 获取全部插件列表信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 获取插件列表
+      tags:
+      - 插件
+  /api/chat/send:
+    post:
+      consumes:
+      - application/json
+      description: 用户对话，发送问题消息
+      parameters:
+      - description: 消息参数
+        in: body
+        name: args
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SendMessageArgs'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 发送消息
+      tags:
+      - 聊天
+  /api/login:
+    post:
+      consumes:
+      - application/json
+      description: 输入账号密码登录，登陆成功返回登录token
+      parameters:
+      - description: 登录参数l
+        in: body
+        name: args
+        required: true
+        schema:
+          $ref: '#/definitions/dto.LoginDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/resp.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+                msg:
+                  type: string
+              type: object
+      summary: 用户登录
+      tags:
+      - 用户
 swagger: "2.0"

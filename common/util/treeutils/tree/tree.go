@@ -141,7 +141,7 @@ func buildNode[T Key](pid T, tree ...*TNode[T]) []*TNode[T] {
 	list := make([]*TNode[T], 0)
 	for i := 0; i < len(tree); i++ {
 		if tree[i].Entity.GetPid() == pid {
-			child := buildNode(tree[i].Entity.GetId(), tree...)
+			child := buildNode[T](tree[i].Entity.GetId(), tree...)
 			tree[i].Child = child
 			list = append(list, tree[i])
 		}

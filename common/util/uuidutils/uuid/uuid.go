@@ -2,14 +2,13 @@ package uuid
 
 import (
 	"github.com/bwmarrin/snowflake"
-	"github.com/jimu-server/config"
 )
 
 var node *snowflake.Node
 
 func init() {
 	var err error
-	if node, err = snowflake.NewNode(config.Evn.App.Number); err != nil {
+	if node, err = snowflake.NewNode(1); err != nil {
 		panic(err)
 	}
 }

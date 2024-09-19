@@ -10,6 +10,7 @@ import 'highlight.js/styles/github.css';
 import {Dialog, Notify, Quasar} from 'quasar'
 import quasarLang from 'quasar/lang/zh-CN'
 import quasarIconSet from 'quasar/icon-set/svg-themify'
+import 'hover.css'
 // Import Quasar css
 import 'quasar/src/css/index.sass'
 

@@ -13,8 +13,8 @@
     --md-msg-font-normal: 50px;
 
     --md-msg-a: #3451b2;
-    --md-msg-inline-code-bg: rgb(132, 187, 154);
-    --md-msg-inline-code-bg-dark: rgba(132, 187, 154, 0.9);
+    --md-msg-inline-code-bg: rgb(12, 170, 76);
+    --md-msg-inline-code-bg-dark: rgba(83, 175, 117, 0.68);
 
     --md-msg-block-code-bg: rgb(255, 255, 255);
     --md-msg-block-code-bg-dark: #000000;
@@ -84,7 +84,6 @@
 }
 
 
-
 .markdown-message a {
     font-weight: 500;
     color: var(--md-msg-a);
@@ -95,17 +94,18 @@
 
 
 .markdown-message :not(pre) > code {
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    font-size: 15px;
+    border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     align-content: center;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
     background-color: var(--md-msg-inline-code-bg);
     transition: color .25s, background-color .5s;
-    color: rgb(43, 46, 42);
+    color: rgb(229, 248, 226);
 }
 
 .markdown-message > pre {
@@ -117,7 +117,6 @@
     color: #000000;
     overflow: auto;
 }
-
 
 
 .markdown-message .token.parameter.variable {
@@ -162,7 +161,7 @@
 }
 
 
-.markdown-code-block{
+.markdown-code-block {
     position: relative;
     width: 100%;
     border-radius: 4px;

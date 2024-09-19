@@ -65,11 +65,18 @@
 
 
 .markdown-message :not(pre) > code[theme="dark"] {
-    border-radius: 4px;
-    padding: 3px 6px;
+    font-size: 15px;
+    border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    align-content: center;
+    margin-left: 3px;
+    margin-right: 3px;
     background-color: var(--md-msg-inline-code-bg-dark);
     transition: color .25s, background-color .5s;
-    color: #ffffff;
+    color: #050505;
 }
 
 .markdown-message > pre[theme="dark"] {

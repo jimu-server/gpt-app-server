@@ -9,6 +9,7 @@ import (
 	"gpt-desktop/controller/chat/dto"
 	"gpt-desktop/controller/chat/service"
 	"gpt-desktop/db"
+	llm_sdk "gpt-desktop/gpt/llm-sdk"
 	"gpt-desktop/logs"
 	"gpt-desktop/model"
 	"time"
@@ -162,4 +163,12 @@ func KnowledgeChatStream(c *gin.Context) {
 	//var params dto.KnowledgeChatArgs
 	//web.BindJSON(c, &params)
 	//service.SendKnowledgeChatStreamMessage(c, params)
+}
+
+func Models(c *gin.Context) {
+	list, err := llm_sdk.ModelList("http://127.0.0.1:11434")
+	if err != nil {
+		return
+	}
+	resp.SUCCESS(c, list.Models)
 }

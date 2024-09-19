@@ -7,7 +7,7 @@
       @click="selectChat(item,index)"
       :active-class="item.active? 'chat-active text-white':'text-black'"
       style="border-radius: 3px;margin-top: 5px;width: 100%"
-      :class="item.active?'chat-active text-white':'chat-unactive'"
+      :class="item.active?'chat-active text-white':'chat-unactive hvr-wobble-horizontal'"
       :theme="theme.dark?'dark':'light'"
   >
     <!--    好友头像     -->
@@ -130,6 +130,23 @@ function latestMsg(conver: AppChatConversationItem) {
 
 <style scoped>
 
+/* Grow */
+.hvr-grow2 {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.hvr-grow2:hover,
+.hvr-grow2:focus,
+.hvr-grow2:active {
+  transform: scale(1.1);
+}
 </style>
 <style>
 .chat-active {

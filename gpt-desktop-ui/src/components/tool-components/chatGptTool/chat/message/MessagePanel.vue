@@ -83,7 +83,6 @@ import {useThemeStore} from "@/components/system-components/store/theme";
 import {useGptStore} from "@/components/tool-components/chatGptTool/store/gpt";
 import {updateTheme} from "@/components/tool-components/chatGptTool/style/update";
 import ChatMessage from "@/components/tool-components/chatGptTool/chat/message/ChatMessage.vue";
-import MessageHeaderBar from "@/components/tool-components/chatGptTool/chat/message/MessageHeaderBar.vue";
 import HeaderToolBar from "@/components/system-components/desktop/HeaderToolBar.vue";
 import WindowBtnGroup from "@/components/system-components/desktop/WindowBtnGroup.vue";
 
@@ -189,74 +188,20 @@ let options = {
 let observer = null
 
 function beginObserver() {
-  // 当前消息数量 小于50条数据不需要进行优化,不执行元素观察优化
-  /*  if (ctx.CurrentChat.messageList.length < 50) {
-      return
-    }*/
-
   // 创建元素观察器
   if (observer != null) {
     observer.disconnect()
   }
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      let perId = ((entry.target.previousSibling) as HTMLElement).id
-      let id = entry.target.id
-      let nextId = ((entry.target.nextSibling) as HTMLElement).id
-      if (entry.isIntersecting) {
-        // 显示当前节点
-        if (id && !ctx.view.includes(id)) {
-          ctx.view.push(id)
-        }
-        // 根据滚动条的方向来判断是向下滚动还是向上滚动,分别处理应该加载的数据
-        if (scrollDirection.value) {
-          // 向下滚动,提前显示下一个节点
-          if (entry.target.nextSibling) {
-            if (nextId && !ctx.view.includes(nextId)) {
-              ctx.view.push(nextId)
-            }
-          }
-        } else {
-          // 提前显示上一个节点
-          if (entry.target.previousSibling) {
-            if (perId && !ctx.view.includes(perId)) {
-              ctx.view.push(perId)
-            }
-          }
-        }
+      let chatBody = entry.target.getElementsByClassName("chat-message-body")[0] as HTMLElement;
+     /* if (entry.intersectionRatio > 0) {
+        console.log("load..", chatBody)
+        chatBody.style.display = "";
       } else {
-        /*        if (id && !ctx.view.includes(id)) {
-                  let index = ctx.view.findIndex(item => {
-                    return item === id
-                  });
-                  if (index != -1) {
-                    ctx.view.splice(index, 1);
-                  }
-                }*/
-
-        setTimeout(() => {
-          if (scrollDirection.value) {
-            if (entry.target.previousSibling) {
-              let index = ctx.view.findIndex(item => {
-                return item === perId
-              });
-              if (index != -1) {
-                ctx.view.splice(index, 1);
-              }
-            }
-          } else {
-            if (entry.target.nextSibling) {
-              let index = ctx.view.findIndex(item => {
-                return item === nextId
-              });
-              if (index != -1) {
-                ctx.view.splice(index, 1);
-              }
-            }
-          }
-        }, 300)
-
-      }
+        console.log("unload..", chatBody)
+        chatBody.style.display = "none";
+      }*/
     });
   }, options);
 
@@ -270,9 +215,28 @@ const theme = useThemeStore()
 setTimeout(() => {
   updateTheme(theme.dark)
 }, 500)
+
 watch(() => theme.dark, (value) => {
   updateTheme(value)
 })
+
+/*const intersectionObserver = new IntersectionObserver((entries) => {
+  // 如果 intersectionRatio 为 0，则目标在视野外，
+  // 我们不需要做任何事情。
+  if (entries[0].intersectionRatio <= 0) return;
+
+  console.log("Loaded new items");
+});
+// 开始监听
+intersectionObserver.observe(document.querySelector(".scrollerFooter"));*/
+
+const inView = ref(Array.apply(null, Array(50)).map(_ => false))
+function onIntersection (entry) {
+  const index = parseInt(entry.target.dataset.id, 10)
+  setTimeout(() => {
+    inView.value.splice(index, 1, entry.isIntersecting)
+  }, 50)
+}
 
 emitter.on(MessageObserver, beginObserver)
 emitter.on(ScrollMove, MoveScroll)

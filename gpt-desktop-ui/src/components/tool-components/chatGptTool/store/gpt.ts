@@ -1,12 +1,17 @@
 import {defineStore} from "pinia";
 
 import emitter from "@/plugins/event";
-import {ScrollToBottom, SendActionScroll} from "@/plugins/evenKey";
+import {MessageObserver} from "@/plugins/evenKey";
 import {ConversationEntity, MessageItem} from "@/components/tool-components/chatGptTool/model/chat";
 import {
-    AppChatConversationItem, AppChatKnowledgeFile, AppChatKnowledgeInstance,
-    AppChatMessageItem, ChatCache,
-    LLmMole, OllamaDownload, OllamaModelResponse
+    AppChatConversationItem,
+    AppChatKnowledgeFile,
+    AppChatKnowledgeInstance,
+    AppChatMessageItem,
+    ChatCache,
+    LLmMole,
+    OllamaDownload,
+    OllamaModelResponse
 } from "@/components/tool-components/chatGptTool/model/model";
 import {IsEmpty} from "@/components/tool-components/chatGptTool/chat/chatutils";
 import {
@@ -17,7 +22,6 @@ import {
 import {Tree} from "@/components/system-components/model/system";
 import {getLLmMole} from "@/components/tool-components/chatGptTool/ollamaRequest";
 import {Stream} from "@/components/system-components/stream/stream";
-import {set} from "lodash";
 
 
 export const useGptStore = defineStore('gpt', {
@@ -237,8 +241,11 @@ export const useGptStore = defineStore('gpt', {
             this.CurrentChat.messageList = []
             this.view = []
             this.newView = []
-            let data = await getConversationMessage(id)
-            this.CurrentChat.messageList = data
+            this.CurrentChat.messageList = await getConversationMessage(id)
+            setTimeout(()=>{
+                emitter.emit(MessageObserver)
+            },100)
+
         },
 
         UpdateConversationLastMsg(conversationID: string, message: AppChatMessageItem) {

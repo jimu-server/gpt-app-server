@@ -6,7 +6,7 @@
       style="cursor: default;user-select: none"
       :color="toggleColer"
       @click.passive="clear"
-      class="hvr-shrink"
+
   />
 </template>
 <script setup lang="ts">

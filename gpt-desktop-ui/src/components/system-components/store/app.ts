@@ -8,6 +8,10 @@ export const useAppStore = defineStore('app', {
             defaultAvatar: 'https://jimuos-1252940994.cos.ap-nanjing.myqcloud.com/go.jpg',
             dict: {},
             ui: {
+                drawer:{
+                    leftDrawerOpen:false,
+
+                },
                 page: {
                     width: 0,
                     height: 0

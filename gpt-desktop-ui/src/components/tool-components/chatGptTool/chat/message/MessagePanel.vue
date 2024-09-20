@@ -3,6 +3,7 @@
     <!-- 用户头像及其在线状态 -->
     <q-toolbar
         style="height: 40px;width: 100%;border-bottom: rgba(140,147,157,0.34) 1px solid;padding: 0;-webkit-app-region: drag;">
+      <DrawerToggleBtn/>
       <div class="row" style="margin-left: 10px;height: 100%;-webkit-app-region: no-drag">
         <div class="column justify-center" style="margin-left: 5px">
           <div class="row">
@@ -49,23 +50,9 @@
                     <chat-message :message="item" :index="index"/>
                   </template>
                 </div>-->
-
-        <!--        <div
-                    v-for="(item,index) in ctx.CurrentChat.messageList"
-                    v-intersection="onIntersection"
-                    :key="index"
-                    :data-id="index - 1"
-                    style="max-height: 300px"
-                >
-                  <chat-message v-if="inView[index - 1]" :message="item" :index="index" @loading="load"/>
-                </div>-->
-
-        <div
-            v-for="(item,index) in ctx.CurrentChat.messageList"
-        >
+        <div v-for="(item,index) in ctx.CurrentChat.messageList">
           <chat-message :message="item" :index="index" @loading="load"/>
         </div>
-
       </q-scroll-area>
       <q-btn
           v-show="showBackBottom"
@@ -92,6 +79,7 @@ import {updateTheme} from "@/components/tool-components/chatGptTool/style/update
 import ChatMessage from "@/components/tool-components/chatGptTool/chat/message/ChatMessage.vue";
 import HeaderToolBar from "@/components/system-components/desktop/HeaderToolBar.vue";
 import WindowBtnGroup from "@/components/system-components/desktop/WindowBtnGroup.vue";
+import DrawerToggleBtn from "@/components/system-components/desktop/DrawerToggleBtn.vue";
 
 const scrollAreaRef = ref()
 const ctx = useGptStore()

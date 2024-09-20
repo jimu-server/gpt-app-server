@@ -11,17 +11,15 @@
             padding:0,
             height:'40px'
           }">
+          <DrawerToggleBtn/>
           <q-space/>
-          <!--          <WindowThemeBtn/>
-                    <WindowMinimizeBtn/>
-                    <WindowToggleBtn/>
-                    <WindowCloseBtn2/>-->
           <HeaderToolBar/>
           <WindowBtnGroup/>
         </q-toolbar>
       </slot>
     </q-header>
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" behavior="desktop" bordered :width=" tool.left.width"
+    <q-drawer show-if-above v-model="app.ui.drawer.leftDrawerOpen" side="left" behavior="desktop" bordered
+              :width=" tool.left.width"
               class="app-drawer">
       <MainWindowTool :position="ToolLayout.Left" :tool-ctx="tool.left.ctx"/>
     </q-drawer>
@@ -48,27 +46,23 @@ import SettingDialog from "@/components/system-components/setting/SettingDialog.
 import {useAppStore} from "@/components/system-components/store/app";
 import {useGptStore} from "@/components/tool-components/chatGptTool/store/gpt";
 import MessageUi from "@/components/tool-components/chatGptTool/message-ui/MessageUi.vue";
-import WindowCloseBtn2 from "@/components/system-components/desktop/WindowCloseBtn2.vue";
-import WindowToggleBtn from "@/components/system-components/desktop/WindowToggleBtn.vue";
-import WindowMinimizeBtn from "@/components/system-components/desktop/WindowMinimizeBtn.vue";
-import WindowThemeBtn from "@/components/system-components/desktop/WindowThemeBtn.vue";
 import {useThemeStore} from "@/components/system-components/store/theme";
 import HeaderToolBar from "@/components/system-components/desktop/HeaderToolBar.vue";
 import WindowBtnGroup from "@/components/system-components/desktop/WindowBtnGroup.vue";
+import DrawerToggleBtn from "@/components/system-components/desktop/DrawerToggleBtn.vue";
 
 const tool = useToolStore()
-const $q = useQuasar()
-const theme = useThemeStore()
-const leftDrawerOpen = ref(false)
-const showAboutDialog = ref(false)
-const showSettingDialog = ref(false)
-
 const app = useAppStore()
 const ctx = useGptStore()
 const gpt = useGptStore()
+const $q = useQuasar()
+const theme = useThemeStore()
+const showAboutDialog = ref(false)
+const showSettingDialog = ref(false)
+
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  app.ui.drawer.leftDrawerOpen = !app.ui.drawer.leftDrawerOpen
 }
 
 const vSize = {

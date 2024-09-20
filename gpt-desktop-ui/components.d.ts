@@ -36,6 +36,7 @@ declare module 'vue' {
     DialogWindowToolBar: typeof import('./src/components/system-components/widget/DialogWindowToolBar.vue')['default']
     DownloadItem: typeof import('./src/components/tool-components/chatGptTool/chat/message-tool-bar/download/DownloadItem.vue')['default']
     DownloadPanel: typeof import('./src/components/tool-components/chatGptTool/chat/message-tool-bar/download/DownloadPanel.vue')['default']
+    DrawerToggleBtn: typeof import('./src/components/system-components/desktop/DrawerToggleBtn.vue')['default']
     EditImageCard: typeof import('./src/components/tool-components/chatGptTool/chat/editor/widget/EditImageCard.vue')['default']
     Editor: typeof import('./src/components/tool-components/chatGptTool/chat/editor/Editor.vue')['default']
     EditorFileCard: typeof import('./src/components/tool-components/chatGptTool/chat/editor/widget/EditorFileCard.vue')['default']

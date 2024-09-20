@@ -5,7 +5,7 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "jimu-os.cn",
   "asar": true,
-  "productName": "AI 智能助手",
+  "productName": "AIChat",
   "directories": {
     "output": "release/${version}"
   },

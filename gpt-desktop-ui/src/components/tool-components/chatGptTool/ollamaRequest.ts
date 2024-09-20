@@ -5,13 +5,15 @@ import {Result} from "@/components/system-components/model/system";
 import {GetHeaders} from "@/plugins/axiosutil";
 import {OllamaServer} from "@/components/tool-components/chatGptTool/gptAxios";
 import {getOllamaServer} from "@/components/tool-components/chatGptTool/gptutil";
+import axiosForServer from "@/plugins/axiosForServer";
+import {VITE_APP_SERVER} from "@/env";
 
 
 
 
 export function getLLmMole() {
     return new Promise<OllamaModelResponse[]>(resolve => {
-        OllamaServer.get<Result<OllamaModelResponse[]>>("/api/chat/model/list").then(({data}) => {
+        axiosForServer.get<Result<OllamaModelResponse[]>>("/api/chat/model/list").then(({data}) => {
             if (data.code === 200) {
                 if (data.data == null) {
                     resolve([])
@@ -27,7 +29,7 @@ export function getLLmMole() {
 * @description 下载指定模型,返回下载流
 * */
 export async function downloadOllamaModel(data: any): Promise<Response> {
-    let serverUrl = getOllamaServer()
+    let serverUrl = VITE_APP_SERVER
     return await genStream(`${serverUrl}/api/chat/model/pull`, data);
 }
 

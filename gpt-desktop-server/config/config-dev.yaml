@@ -1,5 +1,5 @@
 server-name: im
-host: localhost
+host: 0.0.0.0
 port: 8080
 database: file:gpt.db?charset=utf8
 logger:

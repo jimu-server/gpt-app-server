@@ -7,7 +7,7 @@ import {sendMessage} from "@/components/tool-components/chatGptTool/chatRequest"
 import {AppChatMessageItem, SendCtx} from "@/components/tool-components/chatGptTool/model/model";
 import {genStream} from "@/components/tool-components/chatGptTool/ollamaRequest";
 import {userStore} from "@/components/system-components/store/user";
-import {VITE_APP_OLLAMA_SERVER} from "@/env";
+import {VITE_APP_OLLAMA_SERVER, VITE_APP_SERVER} from "@/env";
 import {getUuid} from "@/utils/systemutils";
 import {useAiPluginStore} from "@/components/tool-components/chatGptTool/store/plugin";
 
@@ -94,7 +94,7 @@ export async function getReply(message: AppChatMessageItem) {
         modelId: plugin.model,
         messages: messages
     }
-    let serverUrl = getOllamaServer()
+    let serverUrl = VITE_APP_SERVER
     msg.stream = await genStream(`${serverUrl}/api/chat/conversation`, data);
     // 清空内容,表示表示后面接收到流消息 判断 content 为 '' 就开始打印消息
     msg.content = ''

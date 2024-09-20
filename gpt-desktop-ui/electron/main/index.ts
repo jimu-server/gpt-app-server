@@ -1,4 +1,4 @@
-import {app, BrowserWindow, clipboard, ipcMain, nativeImage, session, shell, Tray} from 'electron'
+import {app, BrowserWindow, clipboard, ipcMain, nativeImage, shell, Tray} from 'electron'
 import {release} from 'node:os'
 import {join} from 'node:path'
 import * as path from "path";
@@ -6,6 +6,7 @@ import * as path from "path";
 import {spawn} from 'node:child_process'
 import {ChildProcess} from "child_process";
 import {getSubdirectories, readFiles} from "../utils";
+import AbortController from "abort-controller";
 
 
 // The built directory structure
@@ -42,8 +43,6 @@ if (!app.requestSingleInstanceLock()) {
 // process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 
-
-
 // 主窗口
 let win: BrowserWindow | null = null
 // 托盘
@@ -51,6 +50,9 @@ let tray: Tray | null = null
 let trayMenu: BrowserWindow | null = null
 // 本地服务
 let server: ChildProcess = null
+
+const controller = new AbortController();
+const {signal} = controller;
 
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
@@ -63,8 +65,8 @@ process.env.VITE_DEV_SERVER_URL
 
 // const vueDevToolsPath = path.resolve(__dirname, '../../6.5.1_0')
 
-const ctx={
-    name:'AI 智能助手'
+const ctx = {
+    name: 'AIChat'
 }
 
 let appIcon = null
@@ -86,11 +88,11 @@ if (process.env.VITE_DEV_SERVER_URL) {
 // app 本地服务器
 if (process.env.VITE_DEV_SERVER_URL) {
     appServerBasePath = join(__dirname, "../../server")
-    appServerPath = join(appServerBasePath, "assistant.exe")
+    appServerPath = join(appServerBasePath, "main.exe")
 } else {
     // 生产环境 本地服务器 加载位置为打包后的位置
     appServerBasePath = join(path.dirname(app.getPath('exe')), "resources/server")
-    appServerPath = join(appServerBasePath, "assistant.exe")
+    appServerPath = join(appServerBasePath, "main.exe")
 }
 
 
@@ -141,7 +143,17 @@ function createWindow() {
 function startAppLocalServer() {
     if (appServerPath) {
         // 通过 spawn 创建的进程服务,应用程序结束自动退出
-        server=spawn(appServerPath)
+        console.log(appServerPath)
+        server = spawn(appServerPath)
+        // server.stdout.on('data', (data) => {
+        //     console.log(`stdout: ${data}`);
+        // });
+        // server.stderr.on('data', (data) => {
+        //     console.error(`stderr: ${data}`);
+        // });
+        // server.on('close', (code) => {
+        //     console.log(`子进程退出码：${code}`);
+        // });
     }
 }
 
@@ -307,6 +319,9 @@ ipcMain.on("window-exit", () => {
     }
     if (win) {
         win.destroy()
+    }
+    if (server) {
+        server.kill()
     }
     app.quit()
 })

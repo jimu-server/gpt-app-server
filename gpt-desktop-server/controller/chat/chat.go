@@ -22,7 +22,7 @@ func CreateConversation(c *gin.Context) {
 		Title: reqParams.Title,
 	}
 	db.DB.Create(&conversationItem)
-	resp.SUCCESS(c, conversationItem)
+	resp.SUCCESS(c, conversationItem.Id)
 }
 
 func DelConversation(c *gin.Context) {

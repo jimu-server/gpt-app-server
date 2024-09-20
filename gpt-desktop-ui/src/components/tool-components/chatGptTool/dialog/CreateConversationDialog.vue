@@ -59,6 +59,7 @@ async function submit() {
   }
   let result = await createConversation(name.value)
   if (result.code == 200) {
+    console.log(result.data)
     emits('success', result.data)
     model.value = false
   }

@@ -186,7 +186,7 @@ export const useGptStore = defineStore('gpt', {
         * */
         SetCurrentChat(conversation: ConversationEntity, index: number) {
             let item = null
-            // 当前会话index 存在 则处理当前会话为未选中状态
+            // 当前会话 index 存在 则处理当前会话为未选中状态
             if (!IsEmpty(this.CurrentChat.Current)) {
                 let finIndIndex = this.CurrentChat.conversationList.findIndex(e => {
                     return e.Conversation.id == this.CurrentChat.Current.Conversation.id

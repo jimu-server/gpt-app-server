@@ -56,9 +56,14 @@
                 >
                   <chat-message :message="item" :index="index"/>
                 </q-virtual-scroll>-->
-        <template v-for="(item,index) in ctx.CurrentChat.messageList">
-          <chat-message :message="item" :index="index"/>
-        </template>
+        <div
+            v-for="(item,index) in ctx.CurrentChat.messageList"
+            v-intersection="onIntersection"
+            :data="item.id"
+        >
+          <chat-message :message="item" :index="index" @loading="load"/>
+        </div>
+
       </q-scroll-area>
       <q-btn
           v-show="showBackBottom"
@@ -92,6 +97,10 @@ const previousScrollTop = ref(0)
 const messageList = ref()
 // 记录滚动方向 true:向下,false:向上
 const scrollDirection = ref(true)
+
+const w = ref(0)
+const h = ref(0)
+
 defineExpose({
   MoveScrollBottom,
 })
@@ -140,7 +149,6 @@ function move_scroll_bottom() {
   }, 200)
 }
 
-
 function typewriter_move_scroll() {
   if (scrollAreaRef.value) {
     let percentage = scrollAreaRef.value.getScrollPercentage();
@@ -151,7 +159,6 @@ function typewriter_move_scroll() {
     }
   }
 }
-
 
 /*
 * @description: 接收消息触发消息滚动
@@ -195,13 +202,6 @@ function beginObserver() {
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       let chatBody = entry.target.getElementsByClassName("chat-message-body")[0] as HTMLElement;
-     /* if (entry.intersectionRatio > 0) {
-        console.log("load..", chatBody)
-        chatBody.style.display = "";
-      } else {
-        console.log("unload..", chatBody)
-        chatBody.style.display = "none";
-      }*/
     });
   }, options);
 
@@ -220,22 +220,40 @@ watch(() => theme.dark, (value) => {
   updateTheme(value)
 })
 
-/*const intersectionObserver = new IntersectionObserver((entries) => {
-  // 如果 intersectionRatio 为 0，则目标在视野外，
-  // 我们不需要做任何事情。
-  if (entries[0].intersectionRatio <= 0) return;
 
-  console.log("Loaded new items");
-});
-// 开始监听
-intersectionObserver.observe(document.querySelector(".scrollerFooter"));*/
+const isView = function (id: string): boolean {
+  if (ctx.CurrentChat.view) {
+    return ctx.CurrentChat.view.get(id)
+  }
+  return true
+}
 
-const inView = ref(Array.apply(null, Array(50)).map(_ => false))
-function onIntersection (entry) {
-  const index = parseInt(entry.target.dataset.id, 10)
-  setTimeout(() => {
-    inView.value.splice(index, 1, entry.isIntersecting)
-  }, 50)
+function onIntersection(entry: any) {
+  console.log(entry)
+  let el = (entry.target as Node)
+  if (!entry.isIntersecting) {
+    // 需要隐藏
+    let messageBody = el.firstChild as HTMLElement;
+    if (messageBody) {
+      let id = messageBody.getAttribute("id");
+      setTimeout(() => {
+        if (ctx.CurrentChat.view instanceof Map) {
+          ctx.CurrentChat.view.set(id, entry.isIntersecting)
+          console.log(ctx.CurrentChat.view)
+        }
+      }, 50)
+    }
+  } else {
+    // 需要展示出来
+    let attribute = (el as HTMLElement).getAttribute("data");
+    ctx.CurrentChat.view.set(attribute, entry.isIntersecting)
+  }
+}
+
+function load(width: number, height: number) {
+  console.log(width, height)
+  w.value = width;
+  h.value = height;
 }
 
 emitter.on(MessageObserver, beginObserver)
@@ -252,6 +270,25 @@ onUnmounted(() => {
 
 </script>
 
-<style scoped>
+<style>
+.markdown-code-block::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
+.markdown-code-block::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  /*
+  box-shadow: inset 0 0 10px rgb(255, 255, 255);
+  */
+  background: rgb(120, 106, 106);
+}
+
+.markdown-code-block::-webkit-scrollbar-track {
+  /*
+  box-shadow: inset 0 0 5px rgb(255, 255, 255);
+  */
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0);
+}
 </style>

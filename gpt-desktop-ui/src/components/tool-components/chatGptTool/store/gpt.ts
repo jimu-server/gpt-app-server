@@ -46,6 +46,7 @@ export const useGptStore = defineStore('gpt', {
                 conversationList: [] as ConversationEntity[],
                 // 当前聊天会话消息列表
                 messageList: [] as AppChatMessageItem[],
+                view: null as Map<string, boolean>,
                 // 当前选中会话 需要持久化存储 JSON.parse(localStorage.getItem("current") as string) as sys.ConversationEntity||
                 Current: {} as ConversationEntity,
                 index: -1,
@@ -239,12 +240,15 @@ export const useGptStore = defineStore('gpt', {
         * */
         async GetConversationMessageList(id: string) {
             this.CurrentChat.messageList = []
-            this.view = []
-            this.newView = []
+            this.CurrentChat.view = new Map()
             this.CurrentChat.messageList = await getConversationMessage(id)
-            setTimeout(()=>{
+            this.CurrentChat.messageList.forEach(message => {
+                this.CurrentChat.view.set(message.id, true)
+            })
+            console.log(this.CurrentChat.view)
+            setTimeout(() => {
                 emitter.emit(MessageObserver)
-            },100)
+            }, 100)
 
         },
 

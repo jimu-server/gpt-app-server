@@ -103,7 +103,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 
 
 import {userStore} from "@/components/system-components/store/user";
@@ -113,8 +113,6 @@ import {retryMessage} from "@/components/tool-components/chatGptTool/gptutil";
 import MarkDownMessage from "@/components/tool-components/chatGptTool/chat/message/MarkDownMessage.vue";
 import {useThemeStore} from "@/components/system-components/store/theme";
 import MessageAction from "@/components/tool-components/chatGptTool/chat/message/MessageAction.vue";
-import {deleteMsg} from "@/components/tool-components/chatGptTool/chatRequest";
-import {ElMessage} from "element-plus";
 import TextMessage from "@/components/tool-components/chatGptTool/chat/message/TextMessage.vue";
 
 const theme = useThemeStore()
@@ -127,6 +125,11 @@ const overMessage = ref(false)
 const overFooter = ref(false)
 // 是否处于重试状态
 const doRetry = ref(false)
+const emits = defineEmits({
+  loading: function (width: number, height: number) {
+
+  },
+})
 const props = defineProps<
     {
       message: AppChatMessageItem,
@@ -290,6 +293,17 @@ function retry() {
   }, 1000)
 
 }
+
+
+onMounted(() => {
+  let byId = document.getElementById(props.message.id);
+  if (byId) {
+    var rect = byId.getBoundingClientRect();
+    var width = rect.width;
+    var height = rect.height;
+    emits("loading", width, height)
+  }
+})
 
 </script>
 

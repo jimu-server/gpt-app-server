@@ -49,17 +49,19 @@
                     <chat-message :message="item" :index="index"/>
                   </template>
                 </div>-->
-        <!--        <q-virtual-scroll
-                    scroll-target="#messageScrollArea > .scroll"
-                    :items="ctx.CurrentChat.messageList"
-                    v-slot="{ item, index }"
+
+        <!--        <div
+                    v-for="(item,index) in ctx.CurrentChat.messageList"
+                    v-intersection="onIntersection"
+                    :key="index"
+                    :data-id="index - 1"
+                    style="max-height: 300px"
                 >
-                  <chat-message :message="item" :index="index"/>
-                </q-virtual-scroll>-->
+                  <chat-message v-if="inView[index - 1]" :message="item" :index="index" @loading="load"/>
+                </div>-->
+
         <div
             v-for="(item,index) in ctx.CurrentChat.messageList"
-            v-intersection="onIntersection"
-            :data="item.id"
         >
           <chat-message :message="item" :index="index" @loading="load"/>
         </div>
@@ -97,6 +99,7 @@ const previousScrollTop = ref(0)
 const messageList = ref()
 // 记录滚动方向 true:向下,false:向上
 const scrollDirection = ref(true)
+const refs = ref([])
 
 const w = ref(0)
 const h = ref(0)
@@ -221,33 +224,32 @@ watch(() => theme.dark, (value) => {
 })
 
 
-const isView = function (id: string): boolean {
-  if (ctx.CurrentChat.view) {
-    return ctx.CurrentChat.view.get(id)
-  }
-  return true
-}
+const inView = ref(Array.apply(null, Array(ctx.CurrentChat.messageList.length)).map(_ => false))
 
 function onIntersection(entry: any) {
-  console.log(entry)
-  let el = (entry.target as Node)
-  if (!entry.isIntersecting) {
-    // 需要隐藏
-    let messageBody = el.firstChild as HTMLElement;
-    if (messageBody) {
-      let id = messageBody.getAttribute("id");
-      setTimeout(() => {
-        if (ctx.CurrentChat.view instanceof Map) {
-          ctx.CurrentChat.view.set(id, entry.isIntersecting)
-          console.log(ctx.CurrentChat.view)
-        }
-      }, 50)
-    }
-  } else {
-    // 需要展示出来
-    let attribute = (el as HTMLElement).getAttribute("data");
-    ctx.CurrentChat.view.set(attribute, entry.isIntersecting)
-  }
+  /* console.log(entry)
+   let el = (entry.target as Node)
+   if (!entry.isIntersecting) {
+     // 需要隐藏
+     let messageBody = el.firstChild as HTMLElement;
+     if (messageBody) {
+       let id = messageBody.getAttribute("id");
+       setTimeout(() => {
+         if (ctx.CurrentChat.view instanceof Map) {
+           ctx.CurrentChat.view.set(id, entry.isIntersecting)
+           console.log(ctx.CurrentChat.view)
+         }
+       }, 50)
+     }
+   } else {
+     // 需要展示出来
+     let attribute = (el as HTMLElement).getAttribute("data");
+     ctx.CurrentChat.view.set(attribute, entry.isIntersecting)
+   }*/
+  const index = parseInt(entry.target.dataset.id, 10)
+  setTimeout(() => {
+    inView.value.splice(index, 1, entry.isIntersecting)
+  }, 50)
 }
 
 function load(width: number, height: number) {

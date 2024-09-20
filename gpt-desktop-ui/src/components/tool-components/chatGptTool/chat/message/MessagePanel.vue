@@ -17,7 +17,7 @@
       <HeaderToolBar/>
       <WindowBtnGroup/>
     </q-toolbar>
-    <div ref="messageList" class="column relative-position" style="flex-grow:1;overflow-x: hidden;">
+    <div ref="messageList" class="column relative-position" style="flex-grow:1;overflow-x: hidden;padding-right: 2px">
       <q-scroll-area
           ref="scrollAreaRef"
           id="messageScrollArea"

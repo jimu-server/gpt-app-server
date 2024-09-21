@@ -1,6 +1,6 @@
 <template>
   <!--  <OllamaModelSelect/>-->
-  <q-btn dense flat icon="jimu-caidan1" style="-webkit-app-region: no-drag">
+<!--  <q-btn dense flat icon="jimu-caidan1" style="-webkit-app-region: no-drag">
     <q-menu
         anchor="bottom end" self="top right"
         fit
@@ -24,7 +24,7 @@
   </q-btn>
   <GenKnowledgeFileSelectDialog v-model="fileManageFlag"/>
   <UserModelManage v-model="userModelManageFlag"/>
-  <SettingDialog v-model="settingFlag"/>
+  <SettingDialog v-model="settingFlag"/>-->
 </template>
 
 <script setup lang="ts">

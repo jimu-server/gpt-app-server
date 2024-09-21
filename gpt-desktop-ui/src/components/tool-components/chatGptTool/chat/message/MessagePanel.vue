@@ -50,9 +50,9 @@
                     <chat-message :message="item" :index="index"/>
                   </template>
                 </div>-->
-        <div v-for="(item,index) in ctx.CurrentChat.messageList">
+        <template v-for="(item,index) in ctx.CurrentChat.messageList">
           <chat-message :message="item" :index="index" @loading="load"/>
-        </div>
+        </template>
       </q-scroll-area>
       <q-btn
           v-show="showBackBottom"

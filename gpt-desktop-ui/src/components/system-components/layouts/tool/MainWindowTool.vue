@@ -5,12 +5,16 @@
         <ConversationUi/>
       </div>
     </ToolSidebar>
-    <template v-if="toolShow">
+<!--    <template v-if="toolShow">
       <ToolSidebarView :id="position" :toolCtx="toolCtx" :position="position" style="-webkit-app-region: no-drag;"/>
-      <!--  在工具窗口打开时才可以拖拽宽度  -->
+      &lt;!&ndash;  在工具窗口打开时才可以拖拽宽度  &ndash;&gt;
       <Slide :class="position==ToolLayout.Left?slide_line_l:slide_line_r" @widthChange="widthChange"
              style="-webkit-app-region: no-drag;"/>
-    </template>
+    </template>-->
+    <ToolSidebarView :id="position" :toolCtx="toolCtx" :position="position" style="-webkit-app-region: no-drag;"/>
+    <!--  在工具窗口打开时才可以拖拽宽度  -->
+    <Slide :class="position==ToolLayout.Left?slide_line_l:slide_line_r" @widthChange="widthChange"
+           style="-webkit-app-region: no-drag;"/>
   </div>
 </template>
 

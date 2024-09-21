@@ -75,6 +75,11 @@ function maxInput() {
 </script>
 
 
-<style scoped>
-
+<style >
+.q-splitter--horizontal > .q-splitter__separator > div{
+  cursor:default;
+}
+.q-splitter--horizontal > .q-splitter__separator > div:hover{
+  cursor: default;
+}
 </style>

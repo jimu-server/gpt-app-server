@@ -36,7 +36,7 @@ function mouseDown(event) {
   document.addEventListener("mousemove", mouseMove);
   lastX.value = event.screenX;
   document.getElementById("html").style.userSelect = 'none'
-  document.getElementById("html").style.cursor = 'e-resize'
+  document.getElementById("html").style.cursor = 'default;'
 }
 
 function mouseMove(event) {
@@ -49,7 +49,7 @@ function mouseUp() {
   color.value = un_active.value
   document.removeEventListener("mousemove", mouseMove);
   document.getElementById("html").style.userSelect = 'auto'
-  document.getElementById("html").style.cursor = 'auto'
+  document.getElementById("html").style.cursor = 'default;'
 }
 
 function mouseOver() {
@@ -73,7 +73,7 @@ function mouseLeave() {
 .drag:hover {
   background: v-bind('active');
   width: 3px;
-  cursor: e-resize;
+  cursor:default;
 }
 
 </style>

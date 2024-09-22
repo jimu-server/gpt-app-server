@@ -112,7 +112,7 @@ function createWindow() {
             preload,
             nodeIntegration: true,
             contextIsolation: false,
-            partition: String(+new Date())
+            partition: String(+new Date()),
         },
     })
     win.setBackgroundColor("transparent")
@@ -145,15 +145,6 @@ function startAppLocalServer() {
         // 通过 spawn 创建的进程服务,应用程序结束自动退出
         console.log(appServerPath)
         server = spawn(appServerPath)
-        // server.stdout.on('data', (data) => {
-        //     console.log(`stdout: ${data}`);
-        // });
-        // server.stderr.on('data', (data) => {
-        //     console.error(`stderr: ${data}`);
-        // });
-        // server.on('close', (code) => {
-        //     console.log(`子进程退出码：${code}`);
-        // });
     }
 }
 

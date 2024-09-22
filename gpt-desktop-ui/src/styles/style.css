@@ -1,9 +1,10 @@
 
 :root {
     --app-bg-color: transparent;
-   /* --el-fill-color-blank: var(--app-bg-color) !important;*/
+    /* --el-fill-color-blank: var(--app-bg-color) !important;*/
     /*--el-table-tr-bg-color: var(--app-bg-color) !important;*/
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -70,7 +71,7 @@ div::-webkit-scrollbar-track {
 }
 
 .el-tree {
-    --el-tree-node-content-height: 40px!important;
+    --el-tree-node-content-height: 40px !important;
 }
 
 /*.el-checkbox__inner, .el-checkbox__inner {

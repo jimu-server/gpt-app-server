@@ -8,7 +8,8 @@
     "electron:test": "vite --mode test",
     "electron:produc": "vite --mode production",
     "electron:test:build": "vite build --mode test && electron-builder",
-    "electron:produc:build": "vite build --mode production && electron-builder --win",
+    "electron:produc:build:windows": "vite build --mode production && electron-builder --win",
+    "electron:produc:build:mac": "vite build --mode production && electron-builder --mac",
     "electron:generate-icons": "electron-icon-builder --input=./public/logo.png --output=build --flatten"
   },
   "dependencies": {

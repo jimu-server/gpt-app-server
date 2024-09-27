@@ -149,7 +149,7 @@ function startAppLocalServer() {
 }
 
 app.whenReady().then(async () => {
-    app.setUserTasks([])
+    // app.setUserTasks([])
     createWindow()
     await createTray()
     // 加载本地服务

@@ -57,8 +57,6 @@ import {useAppStore} from "@/components/system-components/store/app";
 import {onMounted, ref, watch} from "vue";
 import {Role} from "@/components/system-components/model/system";
 
-import AddToolDialog from "@/components/system-components/tool/manageTool/page/dialog/AddToolDialog.vue";
-
 const app = useAppStore()
 
 

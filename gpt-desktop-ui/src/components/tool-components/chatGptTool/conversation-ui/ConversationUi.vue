@@ -1,5 +1,6 @@
 <template>
-  <div ref="conversationListRef" class="full-height column" style="overflow: hidden;">
+  <div ref="conversationListRef" class="full-height column"
+       :style="{overflow: 'hidden',paddingTop: platform? '20px':'0'}">
     <div class="row justify-center" style="padding: 7px">
       <search-input width="100%" v-model="ctx.ui.search" @search="search"/>
     </div>
@@ -26,14 +27,20 @@ import {ConversationEntity} from "@/components/tool-components/chatGptTool/model
 import {ElMessage} from "element-plus";
 import ConversationItemLabel
   from "@/components/tool-components/chatGptTool/chat/conversation/ConversationItemLabel.vue";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import emitter from "@/plugins/event";
 import {ScrollToBottom} from "@/plugins/evenKey";
+import {useQuasar} from "quasar";
 
 
 const ctx = useGptStore()
 const conversationListRef = ref()
+const $q=useQuasar()
 
+
+const platform=computed(() => {
+  return $q.platform.is.platform=='mac'
+})
 
 function search(value: string) {
   ctx.ui.search = value

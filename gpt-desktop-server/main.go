@@ -93,7 +93,7 @@ func executeSQLScript(dbFile string, script string) error {
 	logs.Log.Info("executeSQLScript success", zap.String("output", string(output)))
 
 	// 初始化 llm 插件
-	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model)\nVALUES (1, 'AI 助手', 'default', 'jimu-ChatGPT', 'qwen2:7b')")
+	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model)\nVALUES (1, 'AI 助手', 'default', 'jimu-ChatGPT', 'qwen2.5:3b')")
 	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model, float_view)\nVALUES (2, '编程助手', 'programming', 'jimu-code', 'llama3:latest', 'ProgrammingAssistantPanelView')")
 	db.DB.Exec("insert into app_chat_plugin(id, name, code, icon, model, float_view)\nVALUES (3, '知识库', 'knowledge', 'jimu-zhishi', 'qwen2:7b', 'KnowledgePanelView')")
 	db.DB.Exec("insert into app_setting(id, name, value)\nVALUES (1, 'API', 'ApiSetting')")

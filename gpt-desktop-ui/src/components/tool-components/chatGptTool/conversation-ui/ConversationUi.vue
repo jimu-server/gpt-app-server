@@ -39,7 +39,7 @@ const $q=useQuasar()
 
 
 const platform=computed(() => {
-  return $q.platform.is.platform=='mac'
+  return $q.platform.is.platform!='mac'
 })
 
 function search(value: string) {

@@ -1,7 +1,8 @@
-import {app, BrowserWindow, clipboard, ipcMain, nativeImage, shell, Tray} from 'electron'
+import {app, BrowserWindow, Menu,clipboard, ipcMain, nativeImage, shell, Tray} from 'electron'
 import {release} from 'node:os'
 import {join} from 'node:path'
 import * as path from "path";
+import os from "os";
 
 import {spawn} from 'node:child_process'
 import {ChildProcess} from "child_process";
@@ -116,6 +117,11 @@ function createWindow() {
         },
     })
     win.setBackgroundColor("transparent")
+    console.log(os.platform())
+    if (os.platform()=="darwin"){
+        Menu.setApplicationMenu(Menu.buildFromTemplate([]))
+        win.setWindowButtonVisibility(false)
+    }
     // win.setIgnoreMouseEvents(false, {forward: true})
     if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
         // console.log(url)

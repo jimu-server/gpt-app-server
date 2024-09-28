@@ -1,4 +1,4 @@
-import {app, BrowserWindow, Menu,clipboard, ipcMain, nativeImage, shell, Tray} from 'electron'
+import {app, BrowserWindow, clipboard, ipcMain, nativeImage, shell, Tray} from 'electron'
 import {release} from 'node:os'
 import {join} from 'node:path'
 import * as path from "path";
@@ -8,6 +8,8 @@ import {spawn} from 'node:child_process'
 import {ChildProcess} from "child_process";
 import {getSubdirectories, readFiles} from "../utils";
 import AbortController from "abort-controller";
+import {winDesktop} from '../win';
+import {appleDesktop} from "../apple";
 
 
 // The built directory structure
@@ -105,9 +107,9 @@ function createWindow() {
         minWidth: 1200,
         minHeight: 800,
         icon: appIcon,
-        frame: false,
+        frame: true,
         show: false,
-        titleBarStyle: 'hidden',
+        backgroundColor: "transparent",
         webPreferences: {
             spellcheck: false,
             preload,
@@ -116,12 +118,26 @@ function createWindow() {
             partition: String(+new Date()),
         },
     })
-    win.setBackgroundColor("transparent")
-    console.log(os.platform())
-    if (os.platform()=="darwin"){
-        Menu.setApplicationMenu(Menu.buildFromTemplate([]))
-        win.setWindowButtonVisibility(false)
+    win.on("close", (event) => {
+        event.preventDefault()
+        win.hide()
+    })
+    switch (os.platform()) {
+        case "win32":
+            winDesktop(win)
+            break
+        case "darwin":
+            appleDesktop(win)
+            break
+        default:
+            console.log(os.platform())
     }
+
+    // 通过事件初始化窗口显示时机 避免白版闪烁
+    win.on('ready-to-show', () => {
+        win.show()
+    })
+
     // win.setIgnoreMouseEvents(false, {forward: true})
     if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
         // console.log(url)
@@ -140,10 +156,6 @@ function createWindow() {
         if (url.startsWith('https:')) shell.openExternal(url)
         return {action: 'deny'}
     })
-    // 通过事件初始化窗口显示时机 避免白版闪烁
-    win.on('ready-to-show', () => {
-        win.show()
-    })
 }
 
 function startAppLocalServer() {
@@ -155,7 +167,6 @@ function startAppLocalServer() {
 }
 
 app.whenReady().then(async () => {
-    // app.setUserTasks([])
     createWindow()
     await createTray()
     // 加载本地服务

@@ -3,9 +3,9 @@
 <template>
   <template v-if="$q.platform.is.platform=='win'">
     <WindowThemeBtn/>
-    <WindowMinimizeBtn/>
+<!--    <WindowMinimizeBtn/>
     <WindowToggleBtn/>
-    <WindowCloseBtn2/>
+    <WindowCloseBtn2/>-->
   </template>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div ref="conversationListRef" class="full-height column"
-       :style="{overflow: 'hidden',paddingTop: platform? '20px':'0'}">
+       :style="{overflow: 'hidden'}">
     <div class="row justify-center" style="padding: 7px">
       <search-input width="100%" v-model="ctx.ui.search" @search="search"/>
     </div>

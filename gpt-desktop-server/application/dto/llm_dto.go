@@ -1,7 +1,5 @@
 package dto
 
-import "gpt-desktop/domain/entity"
-
 type ModelDTO struct {
 	ID           string `json:"id"`
 	PID          string `json:"pid"`
@@ -50,17 +48,4 @@ type MessageDTO struct {
 	Content        string `json:"content,omitempty"`
 	CreateTime     string `json:"create_time,omitempty"`
 	IsDelete       int    `json:"is_delete,omitempty"`
-}
-
-func NewConversationEntity(dto *ConversationDTO) *entity.ConversationEntity {
-	return &entity.ConversationEntity{
-		ID:         dto.ID,
-		Picture:    dto.Picture,
-		Title:      dto.Title,
-		LastModel:  dto.LastModel,
-		LastMsg:    dto.LastMsg,
-		LastTime:   dto.LastTime,
-		IsDelete:   dto.IsDelete,
-		CreateTime: dto.CreateTime,
-	}
 }

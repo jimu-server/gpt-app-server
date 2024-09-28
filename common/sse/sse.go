@@ -38,15 +38,16 @@ type SSE struct {
 }
 
 func NewSSE(w http.ResponseWriter, opts ...Options) HttpSSE {
-	w.Header().Set("Content-Type", "text/event-stream")
-	w.Header().Set("Cache-Control", "no-cache")
-	w.Header().Set("Connection", "keep-alive")
 	sse := &SSE{
 		writer:         make(chan any),
 		ResponseWriter: w,
-		Flusher:        w.(http.Flusher),
 	}
-
+	if w != nil {
+		w.Header().Set("Content-Type", "text/event-stream")
+		w.Header().Set("Cache-Control", "no-cache")
+		w.Header().Set("Connection", "keep-alive")
+		sse.Flusher = w.(http.Flusher)
+	}
 	for _, opt := range opts {
 		opt(sse)
 	}
@@ -63,7 +64,7 @@ func (s *SSE) Writer(data any) error {
 	var buf []byte
 	var err error
 	defer s.Flusher.Flush()
-	switch v := any(data).(type) {
+	switch v := data.(type) {
 	case string:
 		if _, err = s.ResponseWriter.Write([]byte(v + segmentation)); err != nil {
 			return err

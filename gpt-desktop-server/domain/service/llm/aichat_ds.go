@@ -1,4 +1,4 @@
-package aichat_ds
+package llm
 
 type BaseAIChat struct {
 }

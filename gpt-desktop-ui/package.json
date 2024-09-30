@@ -111,7 +111,7 @@
     "@quasar/vite-plugin": "^1.5.0",
     "@univerjs/vite-plugin": "^0.3.5",
     "@vitejs/plugin-vue": "^4.1.0",
-    "electron": "^30.0.2",
+    "electron": "^32.1.2",
     "electron-builder": "^25.0.5",
     "electron-icon-builder": "^2.0.1",
     "sass": "^1.69.5",
